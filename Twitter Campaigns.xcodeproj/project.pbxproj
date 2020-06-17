@@ -22,7 +22,7 @@
 		6F0A62AA249A28EC007F4E13 /* CampaignNameInputSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignNameInputSheet.swift; sourceTree = "<group>"; };
 		6F0A62AC249A2E74007F4E13 /* FirstTimeSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTimeSetup.swift; sourceTree = "<group>"; };
 		6F0A62AE249A460B007F4E13 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		6FB0FA522498F49D00227943 /* ByeTwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ByeTwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FB0FA522498F49D00227943 /* Twitter Campaigns.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Twitter Campaigns.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FB0FA552498F49D00227943 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FB0FA572498F49D00227943 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6FB0FA5A2498F49D00227943 /* ByeTwitter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ByeTwitter.xcdatamodel; sourceTree = "<group>"; };
@@ -47,7 +47,7 @@
 		6FB0FA492498F49D00227943 = {
 			isa = PBXGroup;
 			children = (
-				6FB0FA542498F49D00227943 /* ByeTwitter */,
+				6FB0FA542498F49D00227943 /* Twitter Campaigns */,
 				6FB0FA532498F49D00227943 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,12 +55,12 @@
 		6FB0FA532498F49D00227943 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6FB0FA522498F49D00227943 /* ByeTwitter.app */,
+				6FB0FA522498F49D00227943 /* Twitter Campaigns.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6FB0FA542498F49D00227943 /* ByeTwitter */ = {
+		6FB0FA542498F49D00227943 /* Twitter Campaigns */ = {
 			isa = PBXGroup;
 			children = (
 				6FB0FA552498F49D00227943 /* AppDelegate.swift */,
@@ -75,15 +75,15 @@
 				6F0A62AC249A2E74007F4E13 /* FirstTimeSetup.swift */,
 				6F0A62AE249A460B007F4E13 /* Helpers.swift */,
 			);
-			path = ByeTwitter;
+			path = "Twitter Campaigns";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6FB0FA512498F49D00227943 /* ByeTwitter */ = {
+		6FB0FA512498F49D00227943 /* Twitter Campaigns */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6FB0FA652498F49F00227943 /* Build configuration list for PBXNativeTarget "ByeTwitter" */;
+			buildConfigurationList = 6FB0FA652498F49F00227943 /* Build configuration list for PBXNativeTarget "Twitter Campaigns" */;
 			buildPhases = (
 				6FB0FA4E2498F49D00227943 /* Sources */,
 				6FB0FA4F2498F49D00227943 /* Frameworks */,
@@ -93,9 +93,9 @@
 			);
 			dependencies = (
 			);
-			name = ByeTwitter;
+			name = "Twitter Campaigns";
 			productName = ByeTwitter;
-			productReference = 6FB0FA522498F49D00227943 /* ByeTwitter.app */;
+			productReference = 6FB0FA522498F49D00227943 /* Twitter Campaigns.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -113,7 +113,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6FB0FA4D2498F49D00227943 /* Build configuration list for PBXProject "ByeTwitter" */;
+			buildConfigurationList = 6FB0FA4D2498F49D00227943 /* Build configuration list for PBXProject "Twitter Campaigns" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -126,7 +126,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6FB0FA512498F49D00227943 /* ByeTwitter */,
+				6FB0FA512498F49D00227943 /* Twitter Campaigns */,
 			);
 		};
 /* End PBXProject section */
@@ -289,10 +289,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ByeTwitter/ByeTwitter.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Twitter Campaigns/Twitter Campaigns.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = ByeTwitter/Info.plist;
+				INFOPLIST_FILE = "Twitter Campaigns/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -308,10 +308,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ByeTwitter/ByeTwitter.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Twitter Campaigns/Twitter Campaigns.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = ByeTwitter/Info.plist;
+				INFOPLIST_FILE = "Twitter Campaigns/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -326,7 +326,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6FB0FA4D2498F49D00227943 /* Build configuration list for PBXProject "ByeTwitter" */ = {
+		6FB0FA4D2498F49D00227943 /* Build configuration list for PBXProject "Twitter Campaigns" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6FB0FA632498F49F00227943 /* Debug */,
@@ -335,7 +335,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6FB0FA652498F49F00227943 /* Build configuration list for PBXNativeTarget "ByeTwitter" */ = {
+		6FB0FA652498F49F00227943 /* Build configuration list for PBXNativeTarget "Twitter Campaigns" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6FB0FA662498F49F00227943 /* Debug */,

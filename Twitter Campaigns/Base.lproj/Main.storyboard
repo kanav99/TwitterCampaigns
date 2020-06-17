@@ -11,11 +11,11 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="ByeTwitter" id="1Xt-HY-uBw">
+                            <menuItem title="Twitter Campaigns" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="ByeTwitter" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="Twitter Campaigns" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About ByeTwitter" id="5kV-Vb-QxS">
+                                        <menuItem title="About Twitter Campaigns" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -29,7 +29,7 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide ByeTwitter" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide Twitter Campaigns" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -47,7 +47,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit ByeTwitter" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit Twitter Campaigns" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -660,7 +660,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="ByeTwitter Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="Twitter Campaigns Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
@@ -674,7 +674,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="ByeTwitter" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Twitter_Campaigns" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -704,7 +704,7 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="ByeTwitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Twitter_Campaigns" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="794" height="415"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -734,7 +734,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="campaignCell" id="XCG-ye-KJj" customClass="CampaignListItemCell" customModule="ByeTwitter" customModuleProvider="target">
+                                                        <tableCellView identifier="campaignCell" id="XCG-ye-KJj" customClass="CampaignListItemCell" customModule="Twitter_Campaigns" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="1" width="235" height="56"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -781,7 +781,7 @@
                                     <rect key="frame" x="1" y="119" width="223" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="63D-2P-Nnq">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="63D-2P-Nnq">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1076,7 +1076,7 @@ Gw
         <!--First Time Setup Controller-->
         <scene sceneID="aib-jV-7nu">
             <objects>
-                <viewController storyboardIdentifier="firstTimeSetup" id="V8L-gd-r2J" customClass="FirstTimeSetupController" customModule="ByeTwitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="firstTimeSetup" id="V8L-gd-r2J" customClass="FirstTimeSetupController" customModule="Twitter_Campaigns" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="SnQ-nK-mPA">
                         <rect key="frame" x="0.0" y="0.0" width="546" height="191"/>
                         <autoresizingMask key="autoresizingMask"/>

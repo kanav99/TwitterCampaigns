@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:ByeTwitter.xcodeproj">
+      location = "self:/Users/kanav/Projects/ByeTwitter/Twitter Campaigns.xcodeproj">
    </FileRef>
 </Workspace>
