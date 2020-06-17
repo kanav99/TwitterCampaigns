@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11134" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11134"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -673,7 +674,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="ByeTwitter" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -684,7 +685,7 @@
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -703,15 +704,429 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="ByeTwitter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="794" height="415"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="58" horizontalPageScroll="10" verticalLineScroll="58" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VF3-5D-MOw">
+                                <rect key="frame" x="0.0" y="-25" width="240" height="440"/>
+                                <clipView key="contentView" id="ADp-9T-OUL">
+                                    <rect key="frame" x="1" y="0.0" width="238" height="439"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="56" headerView="qlv-1j-nVn" viewBased="YES" id="LPx-hT-i5L">
+                                            <rect key="frame" x="0.0" y="0.0" width="238" height="414"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <size key="intercellSpacing" width="3" height="2"/>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                            <tableColumns>
+                                                <tableColumn width="235" minWidth="40" maxWidth="1000" id="1KD-QO-De4">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Your Campaigns">
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="mf8-GO-Qol">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView identifier="campaignCell" id="XCG-ye-KJj" customClass="CampaignListItemCell" customModule="ByeTwitter" customModuleProvider="target">
+                                                            <rect key="frame" x="1" y="1" width="235" height="56"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <progressIndicator wantsLayer="YES" maxValue="100" doubleValue="65" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="eKR-2Z-jUI">
+                                                                    <rect key="frame" x="20" y="20" width="16" height="16"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="16" id="3mi-pM-oXq"/>
+                                                                        <constraint firstAttribute="height" constant="16" id="ESG-Hf-BZC"/>
+                                                                    </constraints>
+                                                                </progressIndicator>
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N64-3b-Tf2">
+                                                                    <rect key="frame" x="54" y="20" width="163" height="16"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="k2X-pv-zZK">
+                                                                        <font key="font" usesAppearanceFont="YES"/>
+                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="eKR-2Z-jUI" firstAttribute="leading" secondItem="XCG-ye-KJj" secondAttribute="leading" constant="20" id="CUK-PE-Dog"/>
+                                                                <constraint firstAttribute="bottom" secondItem="N64-3b-Tf2" secondAttribute="bottom" constant="20" id="Gdv-mO-PHw"/>
+                                                                <constraint firstAttribute="bottom" secondItem="eKR-2Z-jUI" secondAttribute="bottom" constant="20" id="IP4-8o-LA9"/>
+                                                                <constraint firstItem="N64-3b-Tf2" firstAttribute="leading" secondItem="eKR-2Z-jUI" secondAttribute="trailing" constant="20" id="MjU-BE-TKN"/>
+                                                                <constraint firstItem="N64-3b-Tf2" firstAttribute="top" secondItem="XCG-ye-KJj" secondAttribute="top" constant="20" id="NRA-am-Uya"/>
+                                                                <constraint firstAttribute="trailing" secondItem="N64-3b-Tf2" secondAttribute="trailing" constant="20" id="XoB-SZ-oo0"/>
+                                                                <constraint firstItem="eKR-2Z-jUI" firstAttribute="top" secondItem="XCG-ye-KJj" secondAttribute="top" constant="20" id="ZZE-RH-Hoc"/>
+                                                            </constraints>
+                                                            <connections>
+                                                                <outlet property="campaignNameLabel" destination="N64-3b-Tf2" id="dzg-pn-ze9"/>
+                                                                <outlet property="progressIndicator" destination="eKR-2Z-jUI" id="ki3-5t-QR7"/>
+                                                            </connections>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                            </tableColumns>
+                                        </tableView>
+                                    </subviews>
+                                </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="FxE-Vu-A9n"/>
+                                </constraints>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="ajy-pP-hTB">
+                                    <rect key="frame" x="1" y="119" width="223" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="63D-2P-Nnq">
+                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <tableHeaderView key="headerView" id="qlv-1j-nVn">
+                                    <rect key="frame" x="0.0" y="0.0" width="238" height="25"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableHeaderView>
+                            </scrollView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FqL-iZ-DvF">
+                                <rect key="frame" x="743" y="377" width="47" height="32"/>
+                                <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSAddTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wVQ-FQ-MBI">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="newCampaign:" target="XfG-lQ-9wD" id="Gkj-fx-Yom"/>
+                                </connections>
+                            </button>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nJL-eL-h8s">
+                                <rect key="frame" x="447" y="185" width="140" height="140"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="iI3-qy-bFe"/>
+                                    <constraint firstAttribute="height" constant="140" id="noE-Wm-eMP"/>
+                                    <constraint firstAttribute="width" secondItem="nJL-eL-h8s" secondAttribute="height" multiplier="1:1" id="uAt-Kw-OuM"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSUser" id="aZA-AQ-Qut"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7f5-V8-1c7">
+                                <rect key="frame" x="445" y="118" width="144" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Label" id="9XW-Vc-l5q">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="adS-eZ-yhp">
+                                <rect key="frame" x="384" y="94" width="124" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" alignment="center" title="50 Following" id="02a-KM-Bc6">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fLk-cV-OEB">
+                                <rect key="frame" x="445" y="144" width="144" height="21"/>
+                                <textFieldCell key="cell" alignment="center" title="Label" id="Ddd-DW-C1f">
+                                    <font key="font" metaFont="system" size="18"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YfB-Cg-wmE">
+                                <rect key="frame" x="523" y="94" width="143" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="50 Followers" id="GPO-qe-UW6">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2SP-G1-ph9">
+                                <rect key="frame" x="655" y="3" width="135" height="32"/>
+                                <buttonCell key="cell" type="push" title="Start Campaign" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="es1-xb-sQz">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="76S-ZA-nHg">
+                                <rect key="frame" x="576" y="3" width="77" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Pause" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ifI-2Q-5s6">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Td9-aG-2lU">
+                                <rect key="frame" x="246" y="357" width="104" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Campaign Name" id="C9v-Ps-xI7">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qGH-5e-iee">
+                                <rect key="frame" x="365" y="354" width="419" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="ovO-mI-8sB">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FkL-QT-d6p">
+                                <rect key="frame" x="248" y="316" width="102" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Strategy" id="1kn-CJ-G9o">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Yt-tx-l5D">
+                                <rect key="frame" x="363" y="310" width="177" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <popUpButtonCell key="cell" type="push" title="Most Influencial First" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Byl-P2-WjE" id="M9s-Y3-C7Y">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <menu key="menu" id="Hyj-8t-6Gf">
+                                        <items>
+                                            <menuItem title="Most Influencial First" state="on" id="ogf-0B-EfX"/>
+                                            <menuItem title="Least Followers First" id="dHI-mJ-3wH"/>
+                                            <menuItem title="Newest First" id="Byl-P2-WjE"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
+                            <textField hidden="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qKe-Bx-gJ5">
+                                <rect key="frame" x="365" y="229" width="419" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="2ow-wI-BEF">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mk4-dk-Pfu">
+                                <rect key="frame" x="250" y="253" width="109" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Message Text" id="ZFS-ip-mh5">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T56-TP-Zum">
+                                <rect key="frame" x="246" y="3" width="144" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Delete Campaign" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oSl-Xt-62R">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="deleteCampaignClicked:" target="XfG-lQ-9wD" id="wMh-Wf-gdx"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4n3-YD-HJ5">
+                                <rect key="frame" x="481" y="137" width="74" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Login" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3dp-zM-s8Y">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="loginButtonClicked:" target="XfG-lQ-9wD" id="c6T-mI-vuL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="VF3-5D-MOw" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="1yV-Vs-cIz"/>
+                            <constraint firstAttribute="trailing" secondItem="FqL-iZ-DvF" secondAttribute="trailing" constant="10" id="2l2-zZ-Y6A"/>
+                            <constraint firstItem="fLk-cV-OEB" firstAttribute="leading" secondItem="nJL-eL-h8s" secondAttribute="leading" id="5qp-nG-Qfc"/>
+                            <constraint firstItem="FqL-iZ-DvF" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="10" id="6SS-sg-Ld5"/>
+                            <constraint firstItem="nJL-eL-h8s" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="90" id="A9l-XN-pJv"/>
+                            <constraint firstItem="fLk-cV-OEB" firstAttribute="trailing" secondItem="7f5-V8-1c7" secondAttribute="trailing" id="ELa-2Q-Rmt"/>
+                            <constraint firstAttribute="trailing" secondItem="2SP-G1-ph9" secondAttribute="trailing" constant="10" id="G47-Mf-POB"/>
+                            <constraint firstItem="fLk-cV-OEB" firstAttribute="leading" secondItem="7f5-V8-1c7" secondAttribute="leading" id="JGQ-iR-vBr"/>
+                            <constraint firstItem="fLk-cV-OEB" firstAttribute="top" secondItem="nJL-eL-h8s" secondAttribute="bottom" constant="20" id="Pgb-8f-Ynn"/>
+                            <constraint firstAttribute="bottom" secondItem="2SP-G1-ph9" secondAttribute="bottom" constant="10" id="Qzi-6l-JPv"/>
+                            <constraint firstItem="FqL-iZ-DvF" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="10" id="S2M-rt-WgV"/>
+                            <constraint firstAttribute="trailing" secondItem="FqL-iZ-DvF" secondAttribute="trailing" constant="10" id="U1j-UX-rEK"/>
+                            <constraint firstAttribute="bottom" secondItem="VF3-5D-MOw" secondAttribute="bottom" id="Vyb-1q-NBE"/>
+                            <constraint firstItem="7f5-V8-1c7" firstAttribute="top" secondItem="fLk-cV-OEB" secondAttribute="bottom" constant="10" id="ZYJ-Qn-G70"/>
+                            <constraint firstItem="fLk-cV-OEB" firstAttribute="trailing" secondItem="nJL-eL-h8s" secondAttribute="trailing" id="uXq-uH-m74"/>
+                            <constraint firstItem="VF3-5D-MOw" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="ulE-xK-Rni"/>
+                            <constraint firstItem="nJL-eL-h8s" firstAttribute="leading" secondItem="VF3-5D-MOw" secondAttribute="trailing" constant="207" id="vCT-VM-mqW"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="addCampaignButton" destination="FqL-iZ-DvF" id="JgP-LA-Vln"/>
+                        <outlet property="campaignNameLabel" destination="Td9-aG-2lU" id="h9r-rW-5Tc"/>
+                        <outlet property="campaignNameTextField" destination="qGH-5e-iee" id="JdU-ma-uNN"/>
+                        <outlet property="deleteCampaignButton" destination="T56-TP-Zum" id="Pd1-x6-Qsw"/>
+                        <outlet property="loginButton" destination="4n3-YD-HJ5" id="MDd-Mb-y8i"/>
+                        <outlet property="messageTextLabel" destination="mk4-dk-Pfu" id="dVV-2h-mRU"/>
+                        <outlet property="messageTextTextField" destination="qKe-Bx-gJ5" id="CV7-FZ-Pxw"/>
+                        <outlet property="pauseButton" destination="76S-ZA-nHg" id="zit-96-uUq"/>
+                        <outlet property="startButton" destination="2SP-G1-ph9" id="Urt-CQ-K9X"/>
+                        <outlet property="strategyLabel" destination="FkL-QT-d6p" id="3Wt-bA-un1"/>
+                        <outlet property="strategyPopUpButton" destination="8Yt-tx-l5D" id="x2X-kK-9Ds"/>
+                        <outlet property="tableView" destination="LPx-hT-i5L" id="BJB-nf-nO1"/>
+                        <outlet property="twitterFollowers" destination="YfB-Cg-wmE" id="2XA-Qd-Kf0"/>
+                        <outlet property="twitterFollowing" destination="adS-eZ-yhp" id="7nn-93-0AB"/>
+                        <outlet property="twitterHandle" destination="7f5-V8-1c7" id="o6x-uw-UnU"/>
+                        <outlet property="twitterName" destination="fLk-cV-OEB" id="VBw-ld-dVg"/>
+                        <outlet property="userImage" destination="nJL-eL-h8s" id="p3j-p6-88f"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="232" y="706.5"/>
+        </scene>
+        <!--Campaign Name Input Sheet-->
+        <scene sceneID="hLg-tZ-ExD">
+            <objects>
+                <viewController storyboardIdentifier="CampaignNameInputSheet" id="f1X-5i-bfa" customClass="CampaignNameInputSheet" customModule="ByeTwitter" sceneMemberID="viewController">
+                    <view key="view" id="cvf-Yf-X7t">
+                        <rect key="frame" x="0.0" y="0.0" width="499" height="143"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L6u-Fi-EZn">
+                                <rect key="frame" x="18" y="82" width="104" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Campaign Name" id="bnK-UC-dE6">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QtF-0k-Lzx">
+                                <rect key="frame" x="141" y="79" width="338" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="tja-aP-WRB">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bdv-f7-TFh">
+                                <rect key="frame" x="405" y="13" width="80" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mHr-bO-Eqy">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onOkClicked:" target="f1X-5i-bfa" id="ZIN-t5-p86"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0J2-cq-teZ">
+                                <rect key="frame" x="323" y="13" width="82" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3w8-hL-sfI">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onCancelClicked:" target="f1X-5i-bfa" id="eW5-5G-acC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="campaignNameTextField" destination="QtF-0k-Lzx" id="Gol-7y-mcc"/>
+                        <outlet property="cancelButton" destination="0J2-cq-teZ" id="tuU-qF-7jf"/>
+                        <outlet property="okButton" destination="Bdv-f7-TFh" id="Zbr-Nr-5SL"/>
+                    </connections>
+                </viewController>
+                <customObject id="5Or-ye-pjW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="172.5" y="1114.5"/>
+        </scene>
+        <!--First Time Setup Controller-->
+        <scene sceneID="aib-jV-7nu">
+            <objects>
+                <viewController storyboardIdentifier="firstTimeSetup" id="V8L-gd-r2J" customClass="FirstTimeSetupController" customModule="ByeTwitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="SnQ-nK-mPA">
+                        <rect key="frame" x="0.0" y="0.0" width="546" height="191"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UtK-hT-pDY">
+                                <rect key="frame" x="452" y="13" width="80" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Zdt-gS-SsS">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="okClicked:" target="V8L-gd-r2J" id="etZ-bv-qiE"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="St5-xb-6FM">
+                                <rect key="frame" x="380" y="13" width="72" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Exit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dVD-Qy-6ch">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="exitClicked:" target="V8L-gd-r2J" id="zap-eT-lJp"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4GF-y1-kKB">
+                                <rect key="frame" x="18" y="100" width="510" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" title="Before rolling up your first Campaign, we need access to your Twitter account. Please generate a new API Key and enter below" id="CWI-vB-FlS">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WSd-Xt-tmi">
+                                <rect key="frame" x="20" y="62" width="506" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="fES-uj-yhm">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <allowedInputSourceLocales>
+                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                    </allowedInputSourceLocales>
+                                </secureTextFieldCell>
+                            </secureTextField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WVl-JU-GWV">
+                                <rect key="frame" x="18" y="146" width="254" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Welcome to {{ Application Name }}" id="kfR-ND-xYU">
+                                    <font key="font" metaFont="system" size="16"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="apiSecureInput" destination="WSd-Xt-tmi" id="NQb-QY-34Y"/>
+                    </connections>
+                </viewController>
+                <customObject id="pVs-LJ-ZeX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="1494.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSUser" width="32" height="32"/>
+    </resources>
 </document>

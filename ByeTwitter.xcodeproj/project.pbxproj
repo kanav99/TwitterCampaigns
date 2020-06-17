@@ -7,14 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F0A62AB249A28EC007F4E13 /* CampaignNameInputSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0A62AA249A28EC007F4E13 /* CampaignNameInputSheet.swift */; };
+		6F0A62AD249A2E74007F4E13 /* FirstTimeSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0A62AC249A2E74007F4E13 /* FirstTimeSetup.swift */; };
 		6FB0FA562498F49D00227943 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0FA552498F49D00227943 /* AppDelegate.swift */; };
 		6FB0FA582498F49D00227943 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0FA572498F49D00227943 /* ViewController.swift */; };
 		6FB0FA5B2498F49D00227943 /* ByeTwitter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0FA592498F49D00227943 /* ByeTwitter.xcdatamodeld */; };
 		6FB0FA5D2498F49F00227943 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FB0FA5C2498F49F00227943 /* Assets.xcassets */; };
 		6FB0FA602498F49F00227943 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FB0FA5E2498F49F00227943 /* Main.storyboard */; };
+		6FB0FA692498F65500227943 /* CampaignListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0FA682498F65500227943 /* CampaignListItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F0A62AA249A28EC007F4E13 /* CampaignNameInputSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignNameInputSheet.swift; sourceTree = "<group>"; };
+		6F0A62AC249A2E74007F4E13 /* FirstTimeSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTimeSetup.swift; sourceTree = "<group>"; };
 		6FB0FA522498F49D00227943 /* ByeTwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ByeTwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FB0FA552498F49D00227943 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FB0FA572498F49D00227943 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -23,6 +28,7 @@
 		6FB0FA5F2498F49F00227943 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6FB0FA612498F49F00227943 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FB0FA622498F49F00227943 /* ByeTwitter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ByeTwitter.entitlements; sourceTree = "<group>"; };
+		6FB0FA682498F65500227943 /* CampaignListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignListItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,9 @@
 				6FB0FA612498F49F00227943 /* Info.plist */,
 				6FB0FA622498F49F00227943 /* ByeTwitter.entitlements */,
 				6FB0FA592498F49D00227943 /* ByeTwitter.xcdatamodeld */,
+				6FB0FA682498F65500227943 /* CampaignListItem.swift */,
+				6F0A62AA249A28EC007F4E13 /* CampaignNameInputSheet.swift */,
+				6F0A62AC249A2E74007F4E13 /* FirstTimeSetup.swift */,
 			);
 			path = ByeTwitter;
 			sourceTree = "<group>";
@@ -136,9 +145,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F0A62AB249A28EC007F4E13 /* CampaignNameInputSheet.swift in Sources */,
+				6FB0FA692498F65500227943 /* CampaignListItem.swift in Sources */,
 				6FB0FA5B2498F49D00227943 /* ByeTwitter.xcdatamodeld in Sources */,
 				6FB0FA582498F49D00227943 /* ViewController.swift in Sources */,
 				6FB0FA562498F49D00227943 /* AppDelegate.swift in Sources */,
+				6F0A62AD249A2E74007F4E13 /* FirstTimeSetup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
