@@ -1010,7 +1010,7 @@
         <!--Campaign Name Input Sheet-->
         <scene sceneID="hLg-tZ-ExD">
             <objects>
-                <viewController storyboardIdentifier="CampaignNameInputSheet" id="f1X-5i-bfa" customClass="CampaignNameInputSheet" customModule="ByeTwitter" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CampaignNameInputSheet" id="f1X-5i-bfa" customClass="CampaignNameInputSheet" customModule="Twitter_Campaigns" sceneMemberID="viewController">
                     <view key="view" id="cvf-Yf-X7t">
                         <rect key="frame" x="0.0" y="0.0" width="499" height="143"/>
                         <autoresizingMask key="autoresizingMask"/>

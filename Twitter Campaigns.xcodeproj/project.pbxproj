@@ -29,7 +29,7 @@
 		6FB0FA5C2498F49F00227943 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6FB0FA5F2498F49F00227943 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6FB0FA612498F49F00227943 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6FB0FA622498F49F00227943 /* ByeTwitter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ByeTwitter.entitlements; sourceTree = "<group>"; };
+		6FB0FA622498F49F00227943 /* Twitter Campaigns.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Twitter Campaigns.entitlements"; sourceTree = "<group>"; };
 		6FB0FA682498F65500227943 /* CampaignListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignListItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,7 +68,7 @@
 				6FB0FA5C2498F49F00227943 /* Assets.xcassets */,
 				6FB0FA5E2498F49F00227943 /* Main.storyboard */,
 				6FB0FA612498F49F00227943 /* Info.plist */,
-				6FB0FA622498F49F00227943 /* ByeTwitter.entitlements */,
+				6FB0FA622498F49F00227943 /* Twitter Campaigns.entitlements */,
 				6FB0FA592498F49D00227943 /* ByeTwitter.xcdatamodeld */,
 				6FB0FA682498F65500227943 /* CampaignListItem.swift */,
 				6F0A62AA249A28EC007F4E13 /* CampaignNameInputSheet.swift */,
