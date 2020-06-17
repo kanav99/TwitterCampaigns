@@ -684,7 +684,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Twitter Campaigns" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -797,7 +797,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="newCampaign:" target="XfG-lQ-9wD" id="Gkj-fx-Yom"/>
+                                    <action selector="newCampaignClicked:" target="XfG-lQ-9wD" id="doM-xz-mDS"/>
                                 </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nJL-eL-h8s">
@@ -888,14 +888,14 @@
                             <popUpButton hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Yt-tx-l5D">
                                 <rect key="frame" x="363" y="310" width="177" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="Most Influencial First" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Byl-P2-WjE" id="M9s-Y3-C7Y">
+                                <popUpButtonCell key="cell" type="push" title="Newest First" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Byl-P2-WjE" id="M9s-Y3-C7Y">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <menu key="menu" id="Hyj-8t-6Gf">
                                         <items>
-                                            <menuItem title="Most Influencial First" state="on" id="ogf-0B-EfX"/>
+                                            <menuItem title="Most Influencial First" id="ogf-0B-EfX"/>
                                             <menuItem title="Least Followers First" id="dHI-mJ-3wH"/>
-                                            <menuItem title="Newest First" id="Byl-P2-WjE"/>
+                                            <menuItem title="Newest First" state="on" id="Byl-P2-WjE"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
@@ -930,7 +930,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4n3-YD-HJ5">
-                                <rect key="frame" x="481" y="137" width="74" height="32"/>
+                                <rect key="frame" x="480" y="35" width="74" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Login" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3dp-zM-s8Y">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -940,6 +940,26 @@
                                     <action selector="loginButtonClicked:" target="XfG-lQ-9wD" id="c6T-mI-vuL"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xdV-la-prM">
+                                <rect key="frame" x="707" y="3" width="83" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Logout" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KfA-Am-juS">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="logoutButtonClicked:" target="XfG-lQ-9wD" id="59C-oW-qi7"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2GC-kq-L5A">
+                                <rect key="frame" x="423" y="103" width="188" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" selectable="YES" alignment="center" title="Twitter Campaigns      v1.0" id="lYv-rU-lGk">
+                                    <font key="font" size="16" name="HelveticaNeue"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="VF3-5D-MOw" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="1yV-Vs-cIz"/>
@@ -963,10 +983,12 @@
                     </view>
                     <connections>
                         <outlet property="addCampaignButton" destination="FqL-iZ-DvF" id="JgP-LA-Vln"/>
+                        <outlet property="banner" destination="2GC-kq-L5A" id="VIp-0i-c3U"/>
                         <outlet property="campaignNameLabel" destination="Td9-aG-2lU" id="h9r-rW-5Tc"/>
                         <outlet property="campaignNameTextField" destination="qGH-5e-iee" id="JdU-ma-uNN"/>
                         <outlet property="deleteCampaignButton" destination="T56-TP-Zum" id="Pd1-x6-Qsw"/>
                         <outlet property="loginButton" destination="4n3-YD-HJ5" id="MDd-Mb-y8i"/>
+                        <outlet property="logoutButton" destination="xdV-la-prM" id="LMQ-Qn-mbb"/>
                         <outlet property="messageTextLabel" destination="mk4-dk-Pfu" id="dVV-2h-mRU"/>
                         <outlet property="messageTextTextField" destination="qKe-Bx-gJ5" id="CV7-FZ-Pxw"/>
                         <outlet property="pauseButton" destination="76S-ZA-nHg" id="zit-96-uUq"/>
@@ -1106,9 +1128,9 @@ DQ
                                 </secureTextFieldCell>
                             </secureTextField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WVl-JU-GWV">
-                                <rect key="frame" x="18" y="146" width="254" height="19"/>
+                                <rect key="frame" x="18" y="146" width="230" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Welcome to {{ Application Name }}" id="kfR-ND-xYU">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Welcome to Twitter Campaigns" id="kfR-ND-xYU">
                                     <font key="font" metaFont="system" size="16"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

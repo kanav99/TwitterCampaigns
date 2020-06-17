@@ -13,9 +13,11 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
 
     var campaigns: [Campaign] = []
     var isLoggedIn: Bool = false
+    var user: UserData!
 
     @IBOutlet weak var tableView: NSTableView!
 
+    @IBOutlet weak var banner: NSTextField!
     @IBOutlet weak var userImage: NSImageView!
     @IBOutlet weak var twitterName: NSTextField!
     @IBOutlet weak var twitterHandle: NSTextField!
@@ -23,10 +25,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     @IBOutlet weak var twitterFollowing: NSTextField!
     
     @IBOutlet weak var loginButton: NSButton!
-    
-    @IBAction func loginButtonClicked(_ sender: Any) {
-        self.presentAsSheet(firstTimeSetupSheet)
-    }
+    @IBOutlet weak var logoutButton: NSButton!
     
     @IBOutlet weak var addCampaignButton: NSButton!
     @IBOutlet weak var startButton: NSButton!
@@ -72,20 +71,16 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
                 let data: [UserData] = try ctx.fetch(UserData.fetchRequest())
 
                 if data.count == 0 {
-                    twitterName.isHidden = true
-                    twitterHandle.isHidden = true
-                    twitterFollowers.isHidden = true
-                    twitterFollowing.isHidden = true
-                    isLoggedIn = false
-                    addCampaignButton.isHidden = true
-
-                    loginButton.isHidden = false
+                    noUserMode()
                 }
                 else {
+                    hideForm()
+                    user = data[0]
                     twitterName.stringValue = data[0].name!
                     twitterHandle.stringValue = data[0].handle!
                     twitterFollowing.stringValue = String(data[0].following) + " Following"
                     twitterFollowers.stringValue = String(data[0].followers) + " Followers"
+                    userImage.image = NSImage(named: "pika")?.oval()
                     isLoggedIn = true
                 }
             }
@@ -100,19 +95,8 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         tableView.dataSource = self
         tableView.delegate = self
         
-        userImage.image = NSImage(named: "pika")?.oval()
-        userImage.layer?.masksToBounds = true
-        userImage.layer?.cornerRadius = 0.0// userImage.bounds.width / 2.0
-        
-        twitterName.stringValue = "Kanav Gupta"
-        twitterHandle.stringValue = "@kanavgupta99"
-        twitterFollowing.stringValue = "182 Following"
-        twitterFollowers.stringValue = "45 Followers"
-        
         loadUserData()
-        if isLoggedIn {
-            loadCampaigns()
-        }
+        loadCampaigns()
     }
 
     override var representedObject: Any? {
@@ -123,7 +107,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
 
     // MARK: - TableView Code
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return campaigns.count
+        return isLoggedIn ? campaigns.count : 0
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -146,7 +130,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         }
     }
     
-    // MARK: - button helpers
+    // MARK: - Modes
     
     func showForm() {
         userImage.isHidden = true
@@ -154,6 +138,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         twitterHandle.isHidden = true
         twitterFollowers.isHidden = true
         twitterFollowing.isHidden = true
+        logoutButton.isHidden = true
         
         startButton.isHidden = false
         pauseButton.isHidden = false
@@ -165,6 +150,11 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         messageTextTextField.isHidden = false
         deleteCampaignButton.isHidden = false
         
+        loginButton.isHidden = true
+        addCampaignButton.isHidden = false
+        isLoggedIn = true
+        banner.isHidden = true
+        
         let index = tableView.selectedRow
         campaignNameTextField.stringValue = campaigns[index].name!
     }
@@ -175,6 +165,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         twitterHandle.isHidden = false
         twitterFollowers.isHidden = false
         twitterFollowing.isHidden = false
+        logoutButton.isHidden = false
         
         startButton.isHidden = true
         pauseButton.isHidden = true
@@ -185,10 +176,44 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         messageTextLabel.isHidden = true
         messageTextTextField.isHidden = true
         deleteCampaignButton.isHidden = true
+        
+        loginButton.isHidden = true
+        addCampaignButton.isHidden = false
+        isLoggedIn = true
+        banner.isHidden = true
+    }
+    
+    func noUserMode() {
+        userImage.isHidden = false
+        twitterName.isHidden = true
+        twitterHandle.isHidden = true
+        twitterFollowers.isHidden = true
+        twitterFollowing.isHidden = true
+        logoutButton.isHidden = true
+
+        startButton.isHidden = true
+        pauseButton.isHidden = true
+        campaignNameLabel.isHidden = true
+        campaignNameTextField.isHidden = true
+        strategyLabel.isHidden = true
+        strategyPopUpButton.isHidden = true
+        messageTextLabel.isHidden = true
+        messageTextTextField.isHidden = true
+        deleteCampaignButton.isHidden = true
+        
+        loginButton.isHidden = false
+        addCampaignButton.isHidden = true
+        isLoggedIn = false
+        user = nil
+        banner.isHidden = false
+        
+        tableView.reloadData()
+        
+        userImage.image = NSImage(named: "twitter")?.oval()
     }
 
-    @IBAction func newCampaign(_ sender: Any) {
-   
+    // MARK: - Button Handlers
+    @IBAction func newCampaignClicked(_ sender: Any) {
         self.presentAsSheet(campaignNameInputSheet)
     }
     
@@ -217,21 +242,24 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         
     }
     
-}
-
-extension NSImage {
-
-    /// Copies this image to a new one with a circular mask.
-    func oval() -> NSImage {
-        let image = NSImage(size: size)
-        image.lockFocus()
-
-        NSGraphicsContext.current?.imageInterpolation = .high
-        let frame = NSRect(origin: .zero, size: size)
-        NSBezierPath(ovalIn: frame).addClip()
-        draw(at: .zero, from: frame, operation: .sourceOver, fraction: 1)
-
-        image.unlockFocus()
-        return image
+    @IBAction func loginButtonClicked(_ sender: Any) {
+        self.presentAsSheet(firstTimeSetupSheet)
     }
+    
+    @IBAction func logoutButtonClicked(_ sender: Any) {
+        if let ctx = (NSApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+            
+            ctx.delete(user)
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: Campaign.fetchRequest())
+            do {
+                try ctx.execute(deleteRequest)
+            }
+            catch {}
+            (NSApplication.shared.delegate as? AppDelegate)?.saveAction(nil)
+            
+            noUserMode()
+        }
+    }
+    
 }
+

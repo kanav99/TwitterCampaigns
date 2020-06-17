@@ -15,16 +15,31 @@ class FirstTimeSetupController: NSViewController {
     
     @IBAction func okClicked(_ sender: Any) {
         // TODO: - Login Logic goes here
-        
+        if let ctx = (NSApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+            
+            let user = UserData(context: ctx)
+            user.key = apiSecureInput.stringValue
+            user.name = "Kanav Gupta"
+            user.handle = "@kanavgupta99"
+            user.followers = 45
+            user.following = 150
+
+            (NSApplication.shared.delegate as? AppDelegate)?.saveAction(nil)
+            
+            mainViewController?.user = user
+            mainViewController?.twitterName.stringValue = user.name!
+            mainViewController?.twitterHandle.stringValue = user.handle!
+            mainViewController?.twitterFollowing.stringValue = String(user.following) + " Following"
+            mainViewController?.twitterFollowers.stringValue = String(user.followers) + " Followers"
+            mainViewController?.userImage.image = NSImage(named: "pika")?.oval()
+        }
+
         mainViewController?.dismiss(self)
-        mainViewController?.isLoggedIn = true
-        mainViewController?.loadCampaigns()
         mainViewController?.hideForm()
-        mainViewController?.loginButton.isHidden = true
+    
     }
 
     @IBAction func exitClicked(_ sender: Any) {
         mainViewController?.dismiss(self)
-        exit(0)
     }
 }
