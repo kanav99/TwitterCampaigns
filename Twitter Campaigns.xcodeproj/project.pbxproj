@@ -10,6 +10,7 @@
 		6F0A62AB249A28EC007F4E13 /* CampaignNameInputSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0A62AA249A28EC007F4E13 /* CampaignNameInputSheet.swift */; };
 		6F0A62AD249A2E74007F4E13 /* FirstTimeSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0A62AC249A2E74007F4E13 /* FirstTimeSetup.swift */; };
 		6F0A62AF249A460B007F4E13 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0A62AE249A460B007F4E13 /* Helpers.swift */; };
+		6F29E272249CEBBF00B7091F /* ConfirmDeleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F29E271249CEBBF00B7091F /* ConfirmDeleteViewController.swift */; };
 		6FB0FA562498F49D00227943 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0FA552498F49D00227943 /* AppDelegate.swift */; };
 		6FB0FA582498F49D00227943 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0FA572498F49D00227943 /* ViewController.swift */; };
 		6FB0FA5B2498F49D00227943 /* ByeTwitter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0FA592498F49D00227943 /* ByeTwitter.xcdatamodeld */; };
@@ -22,6 +23,7 @@
 		6F0A62AA249A28EC007F4E13 /* CampaignNameInputSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignNameInputSheet.swift; sourceTree = "<group>"; };
 		6F0A62AC249A2E74007F4E13 /* FirstTimeSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTimeSetup.swift; sourceTree = "<group>"; };
 		6F0A62AE249A460B007F4E13 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		6F29E271249CEBBF00B7091F /* ConfirmDeleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDeleteViewController.swift; sourceTree = "<group>"; };
 		6FB0FA522498F49D00227943 /* Twitter Campaigns.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Twitter Campaigns.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FB0FA552498F49D00227943 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FB0FA572498F49D00227943 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				6F0A62AA249A28EC007F4E13 /* CampaignNameInputSheet.swift */,
 				6F0A62AC249A2E74007F4E13 /* FirstTimeSetup.swift */,
 				6F0A62AE249A460B007F4E13 /* Helpers.swift */,
+				6F29E271249CEBBF00B7091F /* ConfirmDeleteViewController.swift */,
 			);
 			path = "Twitter Campaigns";
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 				6F0A62AF249A460B007F4E13 /* Helpers.swift in Sources */,
 				6FB0FA692498F65500227943 /* CampaignListItem.swift in Sources */,
 				6FB0FA5B2498F49D00227943 /* ByeTwitter.xcdatamodeld in Sources */,
+				6F29E272249CEBBF00B7091F /* ConfirmDeleteViewController.swift in Sources */,
 				6FB0FA582498F49D00227943 /* ViewController.swift in Sources */,
 				6FB0FA562498F49D00227943 /* AppDelegate.swift in Sources */,
 				6F0A62AD249A2E74007F4E13 /* FirstTimeSetup.swift in Sources */,

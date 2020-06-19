@@ -52,6 +52,13 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         return sheet
     }()
     
+    lazy var deleteConfirmSheet: ConfirmDeleteViewController = {
+        var sheet = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("confirmDelete"))
+        as! ConfirmDeleteViewController
+        sheet.mainViewController = self
+        return sheet
+    }()
+    
     func loadCampaigns() {
         if let ctx = (NSApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
             
@@ -232,14 +239,10 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     }
     
     @IBAction func deleteCampaignClicked(_ sender: Any) {
-        let campaign = campaigns[tableView.selectedRow]
-        if let ctx = (NSApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
-            ctx.delete(campaign)
-            (NSApplication.shared.delegate as? AppDelegate)?.saveAction(nil)
-            loadCampaigns()
-            hideForm()
+        if deleteConfirmSheet.messageText != nil {
+            deleteConfirmSheet.messageText.stringValue = "Do you really want to \"" + campaigns[tableView.selectedRow].name! + "\" campaign?"
         }
-        
+        self.presentAsSheet(deleteConfirmSheet)
     }
     
     @IBAction func loginButtonClicked(_ sender: Any) {

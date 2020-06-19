@@ -1005,7 +1005,61 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="232" y="706.5"/>
+            <point key="canvasLocation" x="75" y="820"/>
+        </scene>
+        <!--Confirm Delete View Controller-->
+        <scene sceneID="hrR-pv-aqd">
+            <objects>
+                <viewController storyboardIdentifier="confirmDelete" id="qUO-hm-kz8" customClass="ConfirmDeleteViewController" customModule="Twitter_Campaigns" sceneMemberID="viewController">
+                    <view key="view" id="95b-gg-Ugg">
+                        <rect key="frame" x="0.0" y="0.0" width="411" height="99"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IkC-F5-yP0">
+                                <rect key="frame" x="18" y="63" width="325" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Do you really want to delete &quot;{campaign}&quot; campaign?" id="TeU-JD-GdA">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uZi-rt-Eoq">
+                                <rect key="frame" x="327" y="13" width="62" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Yes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="leW-nm-aOc">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="yesClicked:" target="qUO-hm-kz8" id="U9V-C9-bGn"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="993-vj-5XM">
+                                <rect key="frame" x="269" y="13" width="58" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="No" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Hrv-3o-zXq">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="noClicked:" target="qUO-hm-kz8" id="pIv-Af-vV2"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="messageText" destination="IkC-F5-yP0" id="obJ-37-bkp"/>
+                        <outlet property="noButton" destination="993-vj-5XM" id="7nv-Sy-N52"/>
+                        <outlet property="yesButton" destination="uZi-rt-Eoq" id="fHu-4G-tUR"/>
+                    </connections>
+                </viewController>
+                <customObject id="lm6-1f-c1v" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-634.5" y="1070.5"/>
         </scene>
         <!--Campaign Name Input Sheet-->
         <scene sceneID="hLg-tZ-ExD">
@@ -1071,7 +1125,7 @@ Gw
                 </viewController>
                 <customObject id="5Or-ye-pjW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="172.5" y="1114.5"/>
+            <point key="canvasLocation" x="-472" y="1443"/>
         </scene>
         <!--First Time Setup Controller-->
         <scene sceneID="aib-jV-7nu">
