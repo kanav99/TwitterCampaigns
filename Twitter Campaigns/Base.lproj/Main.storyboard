@@ -748,7 +748,7 @@
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N64-3b-Tf2">
                                                                     <rect key="frame" x="54" y="20" width="163" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="k2X-pv-zZK">
-                                                                        <font key="font" usesAppearanceFont="YES"/>
+                                                                        <font key="font" metaFont="system" size="17"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -960,6 +960,17 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6n9-Kz-IdH">
+                                <rect key="frame" x="242" y="377" width="70" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SBe-37-ad6">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="saveClicked:" target="XfG-lQ-9wD" id="cMW-qn-lc8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="VF3-5D-MOw" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="1yV-Vs-cIz"/>
@@ -992,6 +1003,7 @@
                         <outlet property="messageTextLabel" destination="mk4-dk-Pfu" id="dVV-2h-mRU"/>
                         <outlet property="messageTextTextField" destination="qKe-Bx-gJ5" id="CV7-FZ-Pxw"/>
                         <outlet property="pauseButton" destination="76S-ZA-nHg" id="zit-96-uUq"/>
+                        <outlet property="saveButton" destination="6n9-Kz-IdH" id="fdf-IX-yAx"/>
                         <outlet property="startButton" destination="2SP-G1-ph9" id="Urt-CQ-K9X"/>
                         <outlet property="strategyLabel" destination="FkL-QT-d6p" id="3Wt-bA-un1"/>
                         <outlet property="strategyPopUpButton" destination="8Yt-tx-l5D" id="x2X-kK-9Ds"/>

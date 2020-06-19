@@ -37,6 +37,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     @IBOutlet weak var messageTextLabel: NSTextField!
     @IBOutlet weak var messageTextTextField: NSTextField!
     @IBOutlet weak var deleteCampaignButton: NSButton!
+    @IBOutlet weak var saveButton: NSButton!
     
     lazy var campaignNameInputSheet: CampaignNameInputSheet = {
         var sheet = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("CampaignNameInputSheet"))
@@ -156,6 +157,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         messageTextLabel.isHidden = false
         messageTextTextField.isHidden = false
         deleteCampaignButton.isHidden = false
+        saveButton.isHidden = false
         
         loginButton.isHidden = true
         addCampaignButton.isHidden = false
@@ -164,6 +166,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         
         let index = tableView.selectedRow
         campaignNameTextField.stringValue = campaigns[index].name!
+        messageTextTextField.stringValue = campaigns[index].messageTemplate ?? ""
     }
     
     func hideForm() {
@@ -183,6 +186,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         messageTextLabel.isHidden = true
         messageTextTextField.isHidden = true
         deleteCampaignButton.isHidden = true
+        saveButton.isHidden = true
         
         loginButton.isHidden = true
         addCampaignButton.isHidden = false
@@ -207,6 +211,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         messageTextLabel.isHidden = true
         messageTextTextField.isHidden = true
         deleteCampaignButton.isHidden = true
+        saveButton.isHidden = true
         
         loginButton.isHidden = false
         addCampaignButton.isHidden = true
@@ -234,6 +239,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
 
                 (NSApplication.shared.delegate as? AppDelegate)?.saveAction(nil)
                 loadCampaigns()
+                tableView?.selectRowIndexes([campaigns.count - 1], byExtendingSelection: false)
             }
         }
     }
@@ -262,6 +268,14 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
             
             noUserMode()
         }
+    }
+
+    @IBAction func saveClicked(_ sender: Any) {
+        let index = tableView.selectedRow
+        campaigns[tableView.selectedRow].name = campaignNameTextField.stringValue
+        campaigns[tableView.selectedRow].messageTemplate = messageTextTextField.stringValue
+        tableView.reloadData()
+        tableView?.selectRowIndexes([index], byExtendingSelection: false)
     }
     
 }
