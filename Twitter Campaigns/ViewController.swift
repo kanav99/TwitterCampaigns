@@ -14,6 +14,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     var campaigns: [Campaign] = []
     var isLoggedIn: Bool = false
     var user: UserData!
+    var venvPath: String = ""
 
     @IBOutlet weak var tableView: NSTableView!
 
@@ -38,6 +39,8 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     @IBOutlet weak var messageTextTextField: NSTextField!
     @IBOutlet weak var deleteCampaignButton: NSButton!
     @IBOutlet weak var saveButton: NSButton!
+    @IBOutlet weak var durationLabel: NSTextField!
+    @IBOutlet weak var durationDatePicker: NSDatePicker!
     
     lazy var campaignNameInputSheet: CampaignNameInputSheet = {
         var sheet = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("CampaignNameInputSheet"))
@@ -85,10 +88,10 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
                     hideForm()
                     user = data[0]
                     twitterName.stringValue = data[0].name!
-                    twitterHandle.stringValue = data[0].handle!
+                    twitterHandle.stringValue = "@" + data[0].handle!
                     twitterFollowing.stringValue = String(data[0].following) + " Following"
                     twitterFollowers.stringValue = String(data[0].followers) + " Followers"
-                    userImage.image = NSImage(named: "pika")?.oval()
+                    userImage.image = NSImage(contentsOf: URL(string: data[0].image!)!)?.oval()
                     isLoggedIn = true
                 }
             }
@@ -105,11 +108,34 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         
         loadUserData()
         loadCampaigns()
+        install_pip_dependencies()
     }
 
     override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
+        }
+    }
+    
+    func install_pip_dependencies() {
+        let DocumentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        venvPath = DocumentDirectory + "/twitter_campaigns_venv"
+        let requirementsTxtFile = Bundle.main.path(forResource: "requirements", ofType: "txt")!
+        print(venvPath)
+        let b = FileManager.default.fileExists(atPath: venvPath)
+        if !b {
+            let venvProcess = Process()
+            venvProcess.launchPath = "/usr/bin/env"
+            venvProcess.arguments = ["python3", "-m", "venv", venvPath]
+            venvProcess.launch()
+            venvProcess.waitUntilExit()
+            
+            let pipProcess = Process()
+            pipProcess.launchPath = "/usr/bin/env"
+            pipProcess.environment = ["VIRTUAL_ENV": venvPath]
+            pipProcess.arguments = [venvPath + "/bin/pip", "install", "-r", requirementsTxtFile]
+            pipProcess.launch()
+            pipProcess.waitUntilExit()
         }
     }
 
@@ -158,6 +184,8 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         messageTextTextField.isHidden = false
         deleteCampaignButton.isHidden = false
         saveButton.isHidden = false
+        durationLabel.isHidden = false
+        durationDatePicker.isHidden = false
         
         loginButton.isHidden = true
         addCampaignButton.isHidden = false
@@ -187,6 +215,8 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         messageTextTextField.isHidden = true
         deleteCampaignButton.isHidden = true
         saveButton.isHidden = true
+        durationLabel.isHidden = true
+        durationDatePicker.isHidden = true
         
         loginButton.isHidden = true
         addCampaignButton.isHidden = false
@@ -212,6 +242,8 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         messageTextTextField.isHidden = true
         deleteCampaignButton.isHidden = true
         saveButton.isHidden = true
+        durationLabel.isHidden = true
+        durationDatePicker.isHidden = true
         
         loginButton.isHidden = false
         addCampaignButton.isHidden = true

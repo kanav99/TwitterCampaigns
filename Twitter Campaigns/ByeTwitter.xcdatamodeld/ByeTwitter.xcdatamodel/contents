@@ -10,11 +10,12 @@
         <attribute name="followers" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="following" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="handle" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
         <attribute name="key" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
     <elements>
         <element name="Campaign" positionX="-54" positionY="18" width="128" height="103"/>
-        <element name="UserData" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="UserData" positionX="-63" positionY="-18" width="128" height="133"/>
     </elements>
 </model>

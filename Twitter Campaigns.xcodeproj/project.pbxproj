@@ -10,7 +10,9 @@
 		6F0A62AB249A28EC007F4E13 /* CampaignNameInputSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0A62AA249A28EC007F4E13 /* CampaignNameInputSheet.swift */; };
 		6F0A62AD249A2E74007F4E13 /* FirstTimeSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0A62AC249A2E74007F4E13 /* FirstTimeSetup.swift */; };
 		6F0A62AF249A460B007F4E13 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0A62AE249A460B007F4E13 /* Helpers.swift */; };
+		6F27003124A0D84D00EC330A /* twitter.py in Resources */ = {isa = PBXBuildFile; fileRef = 6F27003024A0D84D00EC330A /* twitter.py */; };
 		6F29E272249CEBBF00B7091F /* ConfirmDeleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F29E271249CEBBF00B7091F /* ConfirmDeleteViewController.swift */; };
+		6F783D6524A26BDD0068CCA1 /* requirements.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6F783D5A24A26BDD0068CCA1 /* requirements.txt */; };
 		6FB0FA562498F49D00227943 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0FA552498F49D00227943 /* AppDelegate.swift */; };
 		6FB0FA582498F49D00227943 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0FA572498F49D00227943 /* ViewController.swift */; };
 		6FB0FA5B2498F49D00227943 /* ByeTwitter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0FA592498F49D00227943 /* ByeTwitter.xcdatamodeld */; };
@@ -23,7 +25,9 @@
 		6F0A62AA249A28EC007F4E13 /* CampaignNameInputSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignNameInputSheet.swift; sourceTree = "<group>"; };
 		6F0A62AC249A2E74007F4E13 /* FirstTimeSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTimeSetup.swift; sourceTree = "<group>"; };
 		6F0A62AE249A460B007F4E13 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		6F27003024A0D84D00EC330A /* twitter.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = twitter.py; sourceTree = "<group>"; };
 		6F29E271249CEBBF00B7091F /* ConfirmDeleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDeleteViewController.swift; sourceTree = "<group>"; };
+		6F783D5A24A26BDD0068CCA1 /* requirements.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = requirements.txt; path = ../../../Downloads/requirements.txt; sourceTree = "<group>"; };
 		6FB0FA522498F49D00227943 /* Twitter Campaigns.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Twitter Campaigns.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FB0FA552498F49D00227943 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FB0FA572498F49D00227943 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +81,8 @@
 				6F0A62AC249A2E74007F4E13 /* FirstTimeSetup.swift */,
 				6F0A62AE249A460B007F4E13 /* Helpers.swift */,
 				6F29E271249CEBBF00B7091F /* ConfirmDeleteViewController.swift */,
+				6F27003024A0D84D00EC330A /* twitter.py */,
+				6F783D5A24A26BDD0068CCA1 /* requirements.txt */,
 			);
 			path = "Twitter Campaigns";
 			sourceTree = "<group>";
@@ -97,6 +103,8 @@
 			dependencies = (
 			);
 			name = "Twitter Campaigns";
+			packageProductDependencies = (
+			);
 			productName = ByeTwitter;
 			productReference = 6FB0FA522498F49D00227943 /* Twitter Campaigns.app */;
 			productType = "com.apple.product-type.application";
@@ -125,6 +133,8 @@
 				Base,
 			);
 			mainGroup = 6FB0FA492498F49D00227943;
+			packageReferences = (
+			);
 			productRefGroup = 6FB0FA532498F49D00227943 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -139,7 +149,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F27003124A0D84D00EC330A /* twitter.py in Resources */,
 				6FB0FA5D2498F49F00227943 /* Assets.xcassets in Resources */,
+				6F783D6524A26BDD0068CCA1 /* requirements.txt in Resources */,
 				6FB0FA602498F49F00227943 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
