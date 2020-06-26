@@ -24,7 +24,8 @@ class ConfirmDeleteViewController: NSViewController {
         
         let environment = [
             "VIRTUAL_ENV": mainViewController!.venvPath,
-            "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES"
+            "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES",
+            "TCGUI": "YES"
         ]
         
         if let ctx = (NSApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {

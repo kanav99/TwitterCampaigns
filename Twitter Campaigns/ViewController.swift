@@ -153,7 +153,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
             
             let pipProcess = Process()
             pipProcess.launchPath = "/usr/bin/env"
-            pipProcess.environment = ["VIRTUAL_ENV": venvPath]
+            pipProcess.environment = ["VIRTUAL_ENV": venvPath, "TCGUI": "YES"]
             pipProcess.arguments = [venvPath + "/bin/pip", "install", "-r", requirementsTxtFile]
             pipProcess.launch()
             pipProcess.waitUntilExit()
@@ -317,7 +317,8 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
                     "ConsumerSecret": user.consumerSecret!,
                     "AccessKey": user.accesskey!,
                     "AccessSecret": user.accessSecret!,
-                    "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES"
+                    "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES",
+                    "TCGUI": "YES"
                 ]
                 
                 if let main = Bundle.main.path(forResource: "twitter-campaign-cli/main.py", ofType: "") {
@@ -371,7 +372,8 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
                     "ConsumerSecret": self.user.consumerSecret!,
                     "AccessKey": self.user.accesskey!,
                     "AccessSecret": self.user.accessSecret!,
-                    "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES"
+                    "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES",
+                    "TCGUI": "YES"
                 ]
 
                 if let main = Bundle.main.path(forResource: "twitter-campaign-cli/main.py", ofType: "") {
@@ -414,7 +416,8 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
 
         let id = String(index)
         let environment = [
-         "VIRTUAL_ENV": venvPath
+         "VIRTUAL_ENV": venvPath,
+         "TCGUI": "YES"
         ]
 
         if let main = Bundle.main.path(forResource: "twitter-campaign-cli/main.py", ofType: "") {
@@ -457,7 +460,8 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
             "ConsumerSecret": user.consumerSecret!,
             "AccessKey": user.accesskey!,
             "AccessSecret": user.accessSecret!,
-            "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES"
+            "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES",
+            "TCGUI": "YES"
         ]
         
         if let main = Bundle.main.path(forResource: "twitter-campaign-cli/main.py", ofType: "") {
@@ -483,7 +487,8 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
             "ConsumerSecret": user.consumerSecret!,
             "AccessKey": user.accesskey!,
             "AccessSecret": user.accessSecret!,
-            "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES"
+            "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES",
+            "TCGUI": "YES"
         ]
         
         if let main = Bundle.main.path(forResource: "twitter-campaign-cli/main.py", ofType: "") {
@@ -515,7 +520,8 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         let index = tableView.selectedRow
         let id = String(index)
         let environment = [
-            "VIRTUAL_ENV": venvPath
+            "VIRTUAL_ENV": venvPath,
+            "TCGUI": "YES"
         ]
         
         if let main = Bundle.main.path(forResource: "twitter-campaign-cli/main.py", ofType: "") {
@@ -573,7 +579,8 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
             "ConsumerSecret": user.consumerSecret!,
             "AccessKey": user.accesskey!,
             "AccessSecret": user.accessSecret!,
-            "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES"
+            "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES",
+            "TCGUI": "YES"
         ]
         
         if let main = Bundle.main.path(forResource: "twitter-campaign-cli/main.py", ofType: "") {
