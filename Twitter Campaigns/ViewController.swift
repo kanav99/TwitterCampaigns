@@ -106,12 +106,53 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
                 else {
                     hideForm()
                     user = data[0]
-                    twitterName.stringValue = data[0].name!
-                    twitterHandle.stringValue = "@" + data[0].handle!
-                    twitterFollowing.stringValue = String(data[0].following) + " Following"
-                    twitterFollowers.stringValue = String(data[0].followers) + " Followers"
-                    userImage.image = NSImage(contentsOf: URL(string: data[0].image!)!)?.oval()
+                    twitterName.stringValue = user.name!
+                    twitterHandle.stringValue = "@" + user.handle!
+                    twitterFollowing.stringValue = String(user.following) + " Following"
+                    twitterFollowers.stringValue = String(user.followers) + " Followers"
+                    userImage.image = NSImage(contentsOf: URL(string: user.image!)!)?.oval()
                     isLoggedIn = true
+                    DispatchQueue.global().async {
+                        if let twitterpy = Bundle.main.path(forResource: "twitter", ofType: "py") {
+                            let pythonProcess = Process()
+                            pythonProcess.launchPath = "/usr/bin/env"
+                            pythonProcess.arguments = [self.venvPath + "/bin/python", twitterpy]
+                            pythonProcess.environment = [
+                                "VIRTUAL_ENV": self.venvPath,
+                                "TCConsumerKey": self.user.consumerKey!,
+                                "TCConsumerSecret": self.user.consumerSecret!,
+                                "TCAccessKey": self.user.accesskey!,
+                                "TCAccessSecret": self.user.accessSecret!
+                            ]
+                            let pipe = Pipe()
+                            pythonProcess.standardOutput = pipe
+                            pythonProcess.launch()
+                            pythonProcess.waitUntilExit()
+                            
+                            
+                            let data = pipe.fileHandleForReading.readDataToEndOfFile()
+                            do {
+                                let authUser: UserJSON = try JSONDecoder().decode(UserJSON.self, from: data)
+                                self.user.name = authUser.name
+                                self.user.handle = authUser.screen_name
+                                self.user.followers = authUser.followers_count
+                                self.user.following = authUser.friends_count
+                                self.user.image = authUser.profile_image_url_https.replacingOccurrences(of: "_normal", with: "")
+                                    
+                                let image = NSImage(contentsOf: URL(string: authUser.profile_image_url_https.replacingOccurrences(of: "_normal", with: ""))!)?.oval()
+                                
+                                DispatchQueue.main.async {
+                                    (NSApplication.shared.delegate as? AppDelegate)?.saveAction(nil)
+                                    self.twitterName.stringValue = self.user.name!
+                                    self.twitterHandle.stringValue = "@" + self.user.handle!
+                                    self.twitterFollowing.stringValue = String(self.user.following) + " Following"
+                                    self.twitterFollowers.stringValue = String(self.user.followers) + " Followers"
+                                    self.userImage.image = image
+                                }
+                            }
+                            catch {}
+                        }
+                    }
                 }
             }
             catch {}
@@ -126,9 +167,9 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         tableView.dataSource = self
         tableView.delegate = self
         
+        install_pip_dependencies()
         loadUserData()
         loadCampaigns()
-        install_pip_dependencies()
     }
 
     override var representedObject: Any? {
