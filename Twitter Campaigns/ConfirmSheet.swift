@@ -14,6 +14,8 @@ class ConfirmSheet: NSViewController {
     var mainViewController: ViewController?
     var callback: (() -> ())?
     @IBOutlet weak var progress: NSProgressIndicator!
+    @IBOutlet weak var noButton: NSButton!
+    @IBOutlet weak var yesButton: NSButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +24,16 @@ class ConfirmSheet: NSViewController {
     @IBAction func yesClicked(_ sender: Any) {
         progress.isHidden = false
         progress.startAnimation(self)
+        noButton.isEnabled = false
+        yesButton.isEnabled = false
         DispatchQueue.global().async {
             self.callback!()
             DispatchQueue.main.async {
                 self.progress.stopAnimation(self)
                 self.progress.isHidden = true
                 self.mainViewController?.dismiss(self)
+                self.noButton.isEnabled = true
+                self.yesButton.isEnabled = true
             }
         }
     }

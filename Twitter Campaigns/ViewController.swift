@@ -170,11 +170,64 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         install_pip_dependencies()
         loadUserData()
         loadCampaigns()
+        
+        if Bundle.main.bundlePath != "/Applications/Twitter Campaigns.app" {
+            confirmSheet.messageLabel.stringValue = "App not in Applications Folder. Startup won't work"
+            confirmSheet.noButton.isHidden = true
+            confirmSheet.callback = closeApp
+            DispatchQueue.global().async {
+                sleep(2)
+                DispatchQueue.main.async {
+                    self.presentAsSheet(self.confirmSheet)
+                }
+            }
+        }
+        else if !FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Library/LaunchAgents/org.sdslabs.Twitter Campaigns.plist") {
+            confirmSheet.messageLabel.stringValue = "The program is not set to launch on startup. Setup now?"
+            confirmSheet.callback = confirmStartup
+            DispatchQueue.global().async {
+                sleep(2)
+                DispatchQueue.main.async {
+                    self.presentAsSheet(self.confirmSheet)
+                }
+            }
+        }
+        continueAll()
+    }
+    
+    func closeApp() {
     }
 
+    func confirmStartup() {
+        if let file = Bundle.main.path(forResource: "org.sdslabs.Twitter Campaigns", ofType: "plist") {
+            let x = FileManager.secureCopyItem(FileManager.default)(at: URL(fileURLWithPath: file), to: URL(fileURLWithPath: NSHomeDirectory() + "/Library/LaunchAgents/org.sdslabs.Twitter Campaigns.plist"))
+        }
+    }
+    
     override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
+        }
+    }
+    
+    func continueAll() {
+        let environment = [
+            "VIRTUAL_ENV": venvPath,
+            "ConsumerKey": user.consumerKey!,
+            "ConsumerSecret": user.consumerSecret!,
+            "AccessKey": user.accesskey!,
+            "AccessSecret": user.accessSecret!,
+            "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES",
+            "TCGUI": "YES"
+        ]
+            
+        if let main = Bundle.main.path(forResource: "twitter-campaign-cli/main.py", ofType: "") {
+            let continueProcess = Process()
+            continueProcess.launchPath = "/usr/bin/env"
+            continueProcess.environment = environment
+            continueProcess.arguments = [venvPath + "/bin/python", main, "continue" ]
+            continueProcess.launch()
+            continueProcess.waitUntilExit()
         }
     }
     

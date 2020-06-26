@@ -1456,7 +1456,9 @@ Gw
                     </view>
                     <connections>
                         <outlet property="messageLabel" destination="Uwy-ga-PXn" id="LBS-Uk-O7D"/>
+                        <outlet property="noButton" destination="f8j-jx-4Vl" id="Olc-JV-DBQ"/>
                         <outlet property="progress" destination="yfF-jA-qif" id="ivS-b6-iSG"/>
+                        <outlet property="yesButton" destination="6Bz-eP-qUH" id="hsp-C2-omy"/>
                     </connections>
                 </viewController>
                 <customObject id="JoL-ce-T5O" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
