@@ -13,11 +13,22 @@ class CampaignNameInputSheet: NSViewController {
     @IBOutlet weak var campaignNameTextField: NSTextField!
     @IBOutlet weak var cancelButton: NSButton!
     @IBOutlet weak var okButton: NSButton!
-
+    @IBOutlet weak var strategySelector: NSPopUpButton!
+    
     var mainViewController: ViewController?
 
     @IBAction func onOkClicked(_ sender: Any) {
-        mainViewController?.addCampaign(name: campaignNameTextField.stringValue)
+        if let strategy = strategySelector.titleOfSelectedItem {
+            if strategy == "Most Friends First" {
+                mainViewController?.addCampaign(name: campaignNameTextField.stringValue, strategy: "friend")
+            }
+            else if strategy == "Most Retweets First" {
+                mainViewController?.addCampaign(name: campaignNameTextField.stringValue, strategy: "tweet")
+            }
+            else if strategy == "Most Followers First" {
+                mainViewController?.addCampaign(name: campaignNameTextField.stringValue, strategy: "follower")
+            }
+        }
         mainViewController?.dismiss(self)
     }
 

@@ -41,13 +41,12 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     @IBOutlet weak var campaignNameLabel: NSTextField!
     @IBOutlet weak var campaignNameTextField: NSTextField!
     @IBOutlet weak var strategyLabel: NSTextField!
-    @IBOutlet weak var strategyPopUpButton: NSPopUpButton!
+    @IBOutlet weak var strategyValueLabe: NSTextField!
+    
     @IBOutlet weak var messageTextLabel: NSTextField!
     @IBOutlet weak var messageTextTextField: NSTextField!
     @IBOutlet weak var deleteCampaignButton: NSButton!
     @IBOutlet weak var saveButton: NSButton!
-    @IBOutlet weak var durationLabel: NSTextField!
-    @IBOutlet weak var durationDatePicker: NSDatePicker!
 
     @IBOutlet weak var statusLabel: NSTextField!
     @IBOutlet weak var statusResultLabel: NSTextField!
@@ -205,13 +204,11 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         campaignNameLabel.isHidden = false
         campaignNameTextField.isHidden = false
         strategyLabel.isHidden = false
-        strategyPopUpButton.isHidden = false
+        strategyValueLabe.isHidden = false
         messageTextLabel.isHidden = false
         messageTextTextField.isHidden = false
         deleteCampaignButton.isHidden = false
         saveButton.isHidden = false
-        durationLabel.isHidden = false
-        durationDatePicker.isHidden = false
         
         loginButton.isHidden = true
         addCampaignButton.isHidden = false
@@ -221,6 +218,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         let index = tableView.selectedRow
         campaignNameTextField.stringValue = campaigns[index].name!
         messageTextTextField.stringValue = campaigns[index].messageTemplate ?? ""
+        strategyValueLabe.stringValue = "Most " + campaigns[index].strategyString! + "s first"
     }
     
     func hideForm() {
@@ -240,13 +238,11 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         campaignNameLabel.isHidden = true
         campaignNameTextField.isHidden = true
         strategyLabel.isHidden = true
-        strategyPopUpButton.isHidden = true
+        strategyValueLabe.isHidden = true
         messageTextLabel.isHidden = true
         messageTextTextField.isHidden = true
         deleteCampaignButton.isHidden = true
         saveButton.isHidden = true
-        durationLabel.isHidden = true
-        durationDatePicker.isHidden = true
         
         loginButton.isHidden = true
         addCampaignButton.isHidden = false
@@ -271,13 +267,11 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         campaignNameLabel.isHidden = true
         campaignNameTextField.isHidden = true
         strategyLabel.isHidden = true
-        strategyPopUpButton.isHidden = true
+        strategyValueLabe.isHidden = true
         messageTextLabel.isHidden = true
         messageTextTextField.isHidden = true
         deleteCampaignButton.isHidden = true
         saveButton.isHidden = true
-        durationLabel.isHidden = true
-        durationDatePicker.isHidden = true
         
         loginButton.isHidden = false
         addCampaignButton.isHidden = true
@@ -295,20 +289,20 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         self.presentAsSheet(campaignNameInputSheet)
     }
     
-    func addCampaign(name: String) {
+    func addCampaign(name: String, strategy: String) {
         if name != "" {
             if let ctx = (NSApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
 
                 let campaign = Campaign(context: ctx)
                 campaign.name = name
                 campaign.progress = 0.0
+                campaign.strategyString = strategy
 
                 (NSApplication.shared.delegate as? AppDelegate)?.saveAction(nil)
                 
                 loadCampaigns()
                 
                 let index = campaigns.count - 1
-                let strategy = "follower"
                 let id = String(index)
                 let message = ""
                 let environment = [
@@ -412,7 +406,6 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         pauseButton.isEnabled = false
         self.messageTextTextField.isEnabled = false
         self.campaignNameTextField.isEnabled = false
-        self.strategyPopUpButton.isEnabled = false
 
         let id = String(index)
         let environment = [
@@ -436,13 +429,11 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
                 if let _ = sender as? Int {
                 }
                 else {
-                    self.tableView.reloadData()
-                    self.tableView?.selectRowIndexes([index], byExtendingSelection: false)
+                    self.tableView.reloadData(forRowIndexes: [index], columnIndexes: [0])
                 }
                 self.startButton.isEnabled = true
                 self.messageTextTextField.isEnabled = true
                 self.campaignNameTextField.isEnabled = true
-                self.strategyPopUpButton.isEnabled = true
              }
             }
         }
@@ -515,7 +506,6 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         refreshButton.isEnabled = false
         self.messageTextTextField.isEnabled = false
         self.campaignNameTextField.isEnabled = false
-        self.strategyPopUpButton.isEnabled = false
         
         let index = tableView.selectedRow
         let id = String(index)
@@ -540,7 +530,9 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
                     print(status.total)
                     print(status.sent)
                     print(status.started)
+                    self.campaigns[index].progress = 100.0 * Double(status.sent) / Double(status.total)
                     DispatchQueue.main.async {
+                        self.tableView.reloadData(forRowIndexes: [index], columnIndexes: [0])
                         self.statusResultLabel.stringValue = String(status.sent) + " / " + String(status.total)
                         self.refreshingStatusLabel.isHidden = true
                         self.refreshingStatusLoader.isHidden = true
@@ -552,14 +544,12 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
                             self.saveButton.isEnabled = false
                             self.messageTextTextField.isEnabled = false
                             self.campaignNameTextField.isEnabled = false
-                            self.strategyPopUpButton.isEnabled = false
                         }
                         else {
                             self.startButton.isEnabled = true
                             self.saveButton.isEnabled = true
                             self.messageTextTextField.isEnabled = true
                             self.campaignNameTextField.isEnabled = true
-                            self.strategyPopUpButton.isEnabled = true
                         }
                     }
                 }
