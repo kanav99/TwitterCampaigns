@@ -7,15 +7,18 @@
         <attribute name="strategy" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="UserData" representedClassName="UserData" syncable="YES" codeGenerationType="class">
+        <attribute name="accesskey" optional="YES" attributeType="String"/>
+        <attribute name="accessSecret" optional="YES" attributeType="String"/>
+        <attribute name="consumerKey" optional="YES" attributeType="String"/>
+        <attribute name="consumerSecret" optional="YES" attributeType="String"/>
         <attribute name="followers" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="following" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="handle" optional="YES" attributeType="String"/>
         <attribute name="image" optional="YES" attributeType="String"/>
-        <attribute name="key" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
     <elements>
         <element name="Campaign" positionX="-54" positionY="18" width="128" height="103"/>
-        <element name="UserData" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="UserData" positionX="-63" positionY="-18" width="128" height="178"/>
     </elements>
 </model>

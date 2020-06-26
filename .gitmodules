@@ -1,0 +1,3 @@
+[submodule "Twitter Campaigns/twitter-campaign-cli"]
+	path = Twitter Campaigns/twitter-campaign-cli
+	url = git@github.com:supra08/twitter-campaign-cli.git

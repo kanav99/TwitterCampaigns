@@ -12,6 +12,8 @@
 		6F0A62AF249A460B007F4E13 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0A62AE249A460B007F4E13 /* Helpers.swift */; };
 		6F27003124A0D84D00EC330A /* twitter.py in Resources */ = {isa = PBXBuildFile; fileRef = 6F27003024A0D84D00EC330A /* twitter.py */; };
 		6F29E272249CEBBF00B7091F /* ConfirmDeleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F29E271249CEBBF00B7091F /* ConfirmDeleteViewController.swift */; };
+		6F9BCC8124A5EDFB002B9B21 /* twitter-campaign-cli in Resources */ = {isa = PBXBuildFile; fileRef = 6F9BCC8024A5EDFA002B9B21 /* twitter-campaign-cli */; };
+		6F9BCC8324A60B18002B9B21 /* ConfirmSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9BCC8224A60B18002B9B21 /* ConfirmSheet.swift */; };
 		6FB0FA562498F49D00227943 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0FA552498F49D00227943 /* AppDelegate.swift */; };
 		6FB0FA582498F49D00227943 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0FA572498F49D00227943 /* ViewController.swift */; };
 		6FB0FA5B2498F49D00227943 /* ByeTwitter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0FA592498F49D00227943 /* ByeTwitter.xcdatamodeld */; };
@@ -27,6 +29,8 @@
 		6F0A62AE249A460B007F4E13 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		6F27003024A0D84D00EC330A /* twitter.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = twitter.py; sourceTree = "<group>"; };
 		6F29E271249CEBBF00B7091F /* ConfirmDeleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDeleteViewController.swift; sourceTree = "<group>"; };
+		6F9BCC8024A5EDFA002B9B21 /* twitter-campaign-cli */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "twitter-campaign-cli"; sourceTree = "<group>"; };
+		6F9BCC8224A60B18002B9B21 /* ConfirmSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmSheet.swift; sourceTree = "<group>"; };
 		6FB0FA522498F49D00227943 /* Twitter Campaigns.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Twitter Campaigns.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FB0FA552498F49D00227943 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FB0FA572498F49D00227943 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +73,7 @@
 		6FB0FA542498F49D00227943 /* Twitter Campaigns */ = {
 			isa = PBXGroup;
 			children = (
+				6F9BCC8024A5EDFA002B9B21 /* twitter-campaign-cli */,
 				6FB0FA552498F49D00227943 /* AppDelegate.swift */,
 				6FB0FA572498F49D00227943 /* ViewController.swift */,
 				6FB0FA5C2498F49F00227943 /* Assets.xcassets */,
@@ -83,6 +88,7 @@
 				6F29E271249CEBBF00B7091F /* ConfirmDeleteViewController.swift */,
 				6F27003024A0D84D00EC330A /* twitter.py */,
 				6FC6EDA024A2901B00BE4662 /* requirements.txt */,
+				6F9BCC8224A60B18002B9B21 /* ConfirmSheet.swift */,
 			);
 			path = "Twitter Campaigns";
 			sourceTree = "<group>";
@@ -150,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F27003124A0D84D00EC330A /* twitter.py in Resources */,
+				6F9BCC8124A5EDFB002B9B21 /* twitter-campaign-cli in Resources */,
 				6FC6EDA124A2901B00BE4662 /* requirements.txt in Resources */,
 				6FB0FA5D2498F49F00227943 /* Assets.xcassets in Resources */,
 				6FB0FA602498F49F00227943 /* Main.storyboard in Resources */,
@@ -163,6 +170,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F9BCC8324A60B18002B9B21 /* ConfirmSheet.swift in Sources */,
 				6F0A62AB249A28EC007F4E13 /* CampaignNameInputSheet.swift in Sources */,
 				6F0A62AF249A460B007F4E13 /* Helpers.swift in Sources */,
 				6FB0FA692498F65500227943 /* CampaignListItem.swift in Sources */,

@@ -18,9 +18,27 @@ class ConfirmDeleteViewController: NSViewController {
     
     @IBAction func yesClicked(_ sender: Any) {
         
-        let campaign = mainViewController?.campaigns[(mainViewController?.tableView.selectedRow)!]
+        let index = mainViewController?.tableView?.selectedRow
+        let campaign = mainViewController?.campaigns[index!]
+        let id = String(index!)
+        
+        let environment = [
+            "VIRTUAL_ENV": mainViewController!.venvPath,
+            "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES"
+        ]
+        
         if let ctx = (NSApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
             ctx.delete(campaign!)
+            
+            if let main = Bundle.main.path(forResource: "twitter-campaign-cli/main.py", ofType: "") {
+                let deleteProcess = Process()
+                deleteProcess.launchPath = "/usr/bin/env"
+                deleteProcess.environment = environment
+                deleteProcess.arguments = [mainViewController!.venvPath + "/bin/python", main, "delete", "--id", id ]
+                deleteProcess.launch()
+                deleteProcess.waitUntilExit()
+            }
+            
             (NSApplication.shared.delegate as? AppDelegate)?.saveAction(nil)
             mainViewController?.loadCampaigns()
             mainViewController?.hideForm()

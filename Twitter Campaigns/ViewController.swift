@@ -8,6 +8,11 @@
 
 import Cocoa
 
+struct StatusJSON: Decodable {
+    let started: Bool
+    let total: Int64
+    let sent: Int64
+}
 
 class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 
@@ -31,6 +36,8 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     @IBOutlet weak var addCampaignButton: NSButton!
     @IBOutlet weak var startButton: NSButton!
     @IBOutlet weak var pauseButton: NSButton!
+    @IBOutlet weak var resetButton: NSButton!
+    @IBOutlet weak var refreshButton: NSButton!
     @IBOutlet weak var campaignNameLabel: NSTextField!
     @IBOutlet weak var campaignNameTextField: NSTextField!
     @IBOutlet weak var strategyLabel: NSTextField!
@@ -41,6 +48,12 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     @IBOutlet weak var saveButton: NSButton!
     @IBOutlet weak var durationLabel: NSTextField!
     @IBOutlet weak var durationDatePicker: NSDatePicker!
+
+    @IBOutlet weak var statusLabel: NSTextField!
+    @IBOutlet weak var statusResultLabel: NSTextField!
+    @IBOutlet weak var refreshingStatusLabel: NSTextField!
+    @IBOutlet weak var refreshingStatusLoader: NSProgressIndicator!
+    
     
     lazy var campaignNameInputSheet: CampaignNameInputSheet = {
         var sheet = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("CampaignNameInputSheet"))
@@ -59,6 +72,13 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     lazy var deleteConfirmSheet: ConfirmDeleteViewController = {
         var sheet = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("confirmDelete"))
         as! ConfirmDeleteViewController
+        sheet.mainViewController = self
+        return sheet
+    }()
+    
+    lazy var confirmSheet: ConfirmSheet = {
+        var sheet = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("ConfirmSheet"))
+        as! ConfirmSheet
         sheet.mainViewController = self
         return sheet
     }()
@@ -101,6 +121,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        confirmSheet.loadView()
 
         // Do any additional setup after loading the view.
         tableView.dataSource = self
@@ -118,8 +139,8 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     }
     
     func install_pip_dependencies() {
-        let DocumentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        venvPath = DocumentDirectory + "/twitter_campaigns_venv"
+        let homeDirectory = NSHomeDirectory()
+        venvPath = homeDirectory + "/.tccli/venv"
         let requirementsTxtFile = Bundle.main.path(forResource: "requirements", ofType: "txt")!
         print(venvPath)
         let b = FileManager.default.fileExists(atPath: venvPath)
@@ -160,6 +181,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
                 hideForm()
             } else {
                 showForm()
+                refreshClicked(self)
             }
         }
     }
@@ -176,6 +198,10 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         
         startButton.isHidden = false
         pauseButton.isHidden = false
+        resetButton.isHidden = false
+        refreshButton.isHidden = false
+        statusLabel.isHidden = false
+        statusResultLabel.isHidden = false
         campaignNameLabel.isHidden = false
         campaignNameTextField.isHidden = false
         strategyLabel.isHidden = false
@@ -207,6 +233,10 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         
         startButton.isHidden = true
         pauseButton.isHidden = true
+        resetButton.isHidden = true
+        refreshButton.isHidden = true
+        statusLabel.isHidden = true
+        statusResultLabel.isHidden = true
         campaignNameLabel.isHidden = true
         campaignNameTextField.isHidden = true
         strategyLabel.isHidden = true
@@ -234,6 +264,10 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
 
         startButton.isHidden = true
         pauseButton.isHidden = true
+        resetButton.isHidden = true
+        refreshButton.isHidden = true
+        statusLabel.isHidden = true
+        statusResultLabel.isHidden = true
         campaignNameLabel.isHidden = true
         campaignNameTextField.isHidden = true
         strategyLabel.isHidden = true
@@ -270,8 +304,40 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
                 campaign.progress = 0.0
 
                 (NSApplication.shared.delegate as? AppDelegate)?.saveAction(nil)
+                
                 loadCampaigns()
+                
+                let index = campaigns.count - 1
+                let strategy = "follower"
+                let id = String(index)
+                let message = ""
+                let environment = [
+                    "VIRTUAL_ENV": venvPath,
+                    "ConsumerKey": user.consumerKey!,
+                    "ConsumerSecret": user.consumerSecret!,
+                    "AccessKey": user.accesskey!,
+                    "AccessSecret": user.accessSecret!,
+                    "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES"
+                ]
+                
+                if let main = Bundle.main.path(forResource: "twitter-campaign-cli/main.py", ofType: "") {
+                    let deleteProcess = Process()
+                    deleteProcess.launchPath = "/usr/bin/env"
+                    deleteProcess.environment = environment
+                    deleteProcess.arguments = [venvPath + "/bin/python", main, "delete", "--id", id ]
+                    deleteProcess.launch()
+                    deleteProcess.waitUntilExit()
+
+                    let addProcess = Process()
+                    addProcess.launchPath = "/usr/bin/env"
+                    addProcess.environment = environment
+                    addProcess.arguments = [venvPath + "/bin/python", main, "add", "--id", id, "--name", name, "--strategy", strategy, "--message", message]
+                    addProcess.launch()
+                    addProcess.waitUntilExit()
+                }
+                
                 tableView?.selectRowIndexes([campaigns.count - 1], byExtendingSelection: false)
+
             }
         }
     }
@@ -287,28 +353,248 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         self.presentAsSheet(firstTimeSetupSheet)
     }
     
-    @IBAction func logoutButtonClicked(_ sender: Any) {
-        if let ctx = (NSApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
-            
-            ctx.delete(user)
-            let deleteRequest = NSBatchDeleteRequest(fetchRequest: Campaign.fetchRequest())
-            do {
-                try ctx.execute(deleteRequest)
+    func logoutConfirmed() {
+        DispatchQueue.main.async {
+            if let ctx = (NSApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+                
+                ctx.delete(self.user)
+                let deleteRequest = NSBatchDeleteRequest(fetchRequest: Campaign.fetchRequest())
+                do {
+                    try ctx.execute(deleteRequest)
+                }
+                catch {}
+                (NSApplication.shared.delegate as? AppDelegate)?.saveAction(nil)
+                
+                let environment = [
+                    "VIRTUAL_ENV": self.venvPath,
+                    "ConsumerKey": self.user.consumerKey!,
+                    "ConsumerSecret": self.user.consumerSecret!,
+                    "AccessKey": self.user.accesskey!,
+                    "AccessSecret": self.user.accessSecret!,
+                    "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES"
+                ]
+
+                if let main = Bundle.main.path(forResource: "twitter-campaign-cli/main.py", ofType: "") {
+                    let deleteProcess = Process()
+                    deleteProcess.launchPath = "/usr/bin/env"
+                    deleteProcess.environment = environment
+                    deleteProcess.arguments = [self.venvPath + "/bin/python", main, "delete", "-a" ]
+                    deleteProcess.launch()
+                    deleteProcess.waitUntilExit()
+                }
+
+                self.noUserMode()
             }
-            catch {}
-            (NSApplication.shared.delegate as? AppDelegate)?.saveAction(nil)
-            
-            noUserMode()
         }
+
+    }
+    
+    @IBAction func logoutButtonClicked(_ sender: Any) {
+        confirmSheet.callback = logoutConfirmed
+        confirmSheet.messageLabel.stringValue = "Do you really want to logout?"
+        self.presentAsSheet(confirmSheet)
     }
 
     @IBAction func saveClicked(_ sender: Any) {
         let index = tableView.selectedRow
         campaigns[tableView.selectedRow].name = campaignNameTextField.stringValue
         campaigns[tableView.selectedRow].messageTemplate = messageTextTextField.stringValue
-        tableView.reloadData()
-        tableView?.selectRowIndexes([index], byExtendingSelection: false)
+        (NSApplication.shared.delegate as? AppDelegate)?.saveAction(nil)
+
+        refreshingStatusLabel.stringValue = "Saving..."
+        refreshingStatusLabel.isHidden = false
+        refreshingStatusLoader.isHidden = false
+        refreshingStatusLoader.startAnimation(self)
+
+        startButton.isEnabled = false
+        pauseButton.isEnabled = false
+        self.messageTextTextField.isEnabled = false
+        self.campaignNameTextField.isEnabled = false
+        self.strategyPopUpButton.isEnabled = false
+
+        let id = String(index)
+        let environment = [
+         "VIRTUAL_ENV": venvPath
+        ]
+
+        if let main = Bundle.main.path(forResource: "twitter-campaign-cli/main.py", ofType: "") {
+            let editProcess = Process()
+            editProcess.launchPath = "/usr/bin/env"
+            editProcess.environment = environment
+            editProcess.arguments = [venvPath + "/bin/python", main, "edit", "--id", id, "--name", campaigns[tableView.selectedRow].name!, "--message", campaigns[tableView.selectedRow].messageTemplate!  ]
+            editProcess.launch()
+            DispatchQueue.global().async {
+             editProcess.waitUntilExit()
+             DispatchQueue.main.async {
+                self.refreshingStatusLabel.isHidden = true
+                self.refreshingStatusLoader.isHidden = true
+                self.refreshingStatusLoader.stopAnimation(self)
+                
+                if let _ = sender as? Int {
+                }
+                else {
+                    self.tableView.reloadData()
+                    self.tableView?.selectRowIndexes([index], byExtendingSelection: false)
+                }
+                self.startButton.isEnabled = true
+                self.messageTextTextField.isEnabled = true
+                self.campaignNameTextField.isEnabled = true
+                self.strategyPopUpButton.isEnabled = true
+             }
+            }
+        }
     }
     
+    @IBAction func startClicked(_ sender: Any) {
+        startButton.isEnabled = false
+        pauseButton.isEnabled = true
+        saveClicked(-1)
+        let index = tableView.selectedRow
+        let id = String(index)
+        let environment = [
+            "VIRTUAL_ENV": venvPath,
+            "ConsumerKey": user.consumerKey!,
+            "ConsumerSecret": user.consumerSecret!,
+            "AccessKey": user.accesskey!,
+            "AccessSecret": user.accessSecret!,
+            "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES"
+        ]
+        
+        if let main = Bundle.main.path(forResource: "twitter-campaign-cli/main.py", ofType: "") {
+            let startProcess = Process()
+            startProcess.launchPath = "/usr/bin/env"
+            startProcess.environment = environment
+            startProcess.arguments = [venvPath + "/bin/python", main, "start", "--id", id ]
+            startProcess.launch()
+            startProcess.waitUntilExit()
+        }
+        refreshClicked(self)
+    }
+
+    @IBAction func pauseClicked(_ sender: Any) {
+        startButton.isEnabled = true
+        pauseButton.isEnabled = false
+
+        let index = tableView.selectedRow
+        let id = String(index)
+        let environment = [
+            "VIRTUAL_ENV": venvPath,
+            "ConsumerKey": user.consumerKey!,
+            "ConsumerSecret": user.consumerSecret!,
+            "AccessKey": user.accesskey!,
+            "AccessSecret": user.accessSecret!,
+            "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES"
+        ]
+        
+        if let main = Bundle.main.path(forResource: "twitter-campaign-cli/main.py", ofType: "") {
+            let pauseProcess = Process()
+            pauseProcess.launchPath = "/usr/bin/env"
+            pauseProcess.environment = environment
+            pauseProcess.arguments = [venvPath + "/bin/python", main, "stop", "--id", id ]
+            pauseProcess.launch()
+            pauseProcess.waitUntilExit()
+        }
+        
+        refreshClicked(self)
+    }
+
+    @IBAction func refreshClicked(_ sender: Any) {
+        refreshingStatusLabel.stringValue = "Refreshing status..."
+        refreshingStatusLabel.isHidden = false
+        refreshingStatusLoader.isHidden = false
+        refreshingStatusLoader.startAnimation(self)
+        
+        startButton.isEnabled = false
+        pauseButton.isEnabled = false
+        saveButton.isEnabled = false
+        refreshButton.isEnabled = false
+        self.messageTextTextField.isEnabled = false
+        self.campaignNameTextField.isEnabled = false
+        self.strategyPopUpButton.isEnabled = false
+        
+        let index = tableView.selectedRow
+        let id = String(index)
+        let environment = [
+            "VIRTUAL_ENV": venvPath
+        ]
+        
+        if let main = Bundle.main.path(forResource: "twitter-campaign-cli/main.py", ofType: "") {
+            let statusProcess = Process()
+            statusProcess.launchPath = "/usr/bin/env"
+            statusProcess.environment = environment
+            let pipe = Pipe()
+            statusProcess.standardOutput = pipe
+            statusProcess.arguments = [venvPath + "/bin/python", main, "-f", "json", "status", "--id", id ]
+            statusProcess.launch()
+            DispatchQueue.global().async {
+                statusProcess.waitUntilExit()
+                let data = pipe.fileHandleForReading.readDataToEndOfFile()
+                do {
+                    let status: StatusJSON = try JSONDecoder().decode(StatusJSON.self, from: data)
+                    print(status.total)
+                    print(status.sent)
+                    print(status.started)
+                    DispatchQueue.main.async {
+                        self.statusResultLabel.stringValue = String(status.sent) + " / " + String(status.total)
+                        self.refreshingStatusLabel.isHidden = true
+                        self.refreshingStatusLoader.isHidden = true
+                        self.refreshingStatusLoader.stopAnimation(self)
+                        self.refreshButton.isEnabled = true
+
+                        if (status.started) {
+                            self.pauseButton.isEnabled = true
+                            self.saveButton.isEnabled = false
+                            self.messageTextTextField.isEnabled = false
+                            self.campaignNameTextField.isEnabled = false
+                            self.strategyPopUpButton.isEnabled = false
+                        }
+                        else {
+                            self.startButton.isEnabled = true
+                            self.saveButton.isEnabled = true
+                            self.messageTextTextField.isEnabled = true
+                            self.campaignNameTextField.isEnabled = true
+                            self.strategyPopUpButton.isEnabled = true
+                        }
+                    }
+                }
+                catch {
+                    print("deserialization failed")
+                }
+            }
+        }
+    }
+
+    func resetClickConfirmed() {
+        let index = tableView.selectedRow
+        let id = String(index)
+        let environment = [
+            "VIRTUAL_ENV": venvPath,
+            "ConsumerKey": user.consumerKey!,
+            "ConsumerSecret": user.consumerSecret!,
+            "AccessKey": user.accesskey!,
+            "AccessSecret": user.accessSecret!,
+            "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES"
+        ]
+        
+        if let main = Bundle.main.path(forResource: "twitter-campaign-cli/main.py", ofType: "") {
+            let resetProcess = Process()
+            resetProcess.launchPath = "/usr/bin/env"
+            resetProcess.environment = environment
+            let pipe = Pipe()
+            resetProcess.standardOutput = pipe
+            resetProcess.arguments = [venvPath + "/bin/python", main, "-f", "json", "reset", "--id", id ]
+            resetProcess.launch()
+            resetProcess.waitUntilExit()
+        }
+        DispatchQueue.main.async {
+            self.refreshClicked(self)
+        }
+    }
+    
+    @IBAction func resetClicked(_ sender: Any) {
+        confirmSheet.callback = resetClickConfirmed
+        confirmSheet.messageLabel.stringValue = "Do you really want to reset this campaign?"
+        self.presentAsSheet(confirmSheet)
+    }
 }
 
