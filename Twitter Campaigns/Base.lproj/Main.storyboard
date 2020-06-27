@@ -1187,14 +1187,14 @@ DQ
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jfK-Zb-PsU">
                                 <rect key="frame" x="139" y="58" width="160" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="Most Retweets First" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="azJ-VA-KUX" id="UdQ-qj-sYt">
+                                <popUpButtonCell key="cell" type="push" title="Most Followers First" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Cq4-zL-RP4" id="UdQ-qj-sYt">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <menu key="menu" id="ERC-Iw-HGz">
                                         <items>
-                                            <menuItem title="Most Followers First" id="Cq4-zL-RP4"/>
+                                            <menuItem title="Most Followers First" state="on" id="Cq4-zL-RP4"/>
                                             <menuItem title="Most Friends First" id="bi0-oU-2ZC"/>
-                                            <menuItem title="Most Retweets First" state="on" id="azJ-VA-KUX"/>
+                                            <menuItem title="Most Retweets First" id="azJ-VA-KUX"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
