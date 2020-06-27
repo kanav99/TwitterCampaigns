@@ -200,7 +200,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
 
     func confirmStartup() {
         if let file = Bundle.main.path(forResource: "org.sdslabs.Twitter Campaigns", ofType: "plist") {
-            let x = FileManager.secureCopyItem(FileManager.default)(at: URL(fileURLWithPath: file), to: URL(fileURLWithPath: NSHomeDirectory() + "/Library/LaunchAgents/org.sdslabs.Twitter Campaigns.plist"))
+            let _ = FileManager.secureCopyItem(FileManager.default)(at: URL(fileURLWithPath: file), to: URL(fileURLWithPath: NSHomeDirectory() + "/Library/LaunchAgents/org.sdslabs.Twitter Campaigns.plist"))
         }
     }
     
@@ -394,9 +394,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
 
                 (NSApplication.shared.delegate as? AppDelegate)?.saveAction(nil)
                 
-                loadCampaigns()
-                
-                let index = campaigns.count - 1
+                let index = campaigns.count
                 let id = String(index)
                 let message = ""
                 let environment = [
@@ -425,8 +423,10 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
                     addProcess.waitUntilExit()
                 }
                 
-                tableView?.selectRowIndexes([campaigns.count - 1], byExtendingSelection: false)
-
+                DispatchQueue.main.async {
+                    self.loadCampaigns()
+                    self.tableView?.selectRowIndexes([self.campaigns.count - 1], byExtendingSelection: false)
+                }
             }
         }
     }
@@ -456,11 +456,6 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
                 
                 let environment = [
                     "VIRTUAL_ENV": self.venvPath,
-                    "ConsumerKey": self.user.consumerKey!,
-                    "ConsumerSecret": self.user.consumerSecret!,
-                    "AccessKey": self.user.accesskey!,
-                    "AccessSecret": self.user.accessSecret!,
-                    "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES",
                     "TCGUI": "YES"
                 ]
 

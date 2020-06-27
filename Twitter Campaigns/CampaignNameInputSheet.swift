@@ -14,22 +14,39 @@ class CampaignNameInputSheet: NSViewController {
     @IBOutlet weak var cancelButton: NSButton!
     @IBOutlet weak var okButton: NSButton!
     @IBOutlet weak var strategySelector: NSPopUpButton!
+    @IBOutlet weak var progress: NSProgressIndicator!
+    @IBOutlet weak var progressLabel: NSTextField!
     
     var mainViewController: ViewController?
 
     @IBAction func onOkClicked(_ sender: Any) {
-        if let strategy = strategySelector.titleOfSelectedItem {
-            if strategy == "Most Friends First" {
-                mainViewController?.addCampaign(name: campaignNameTextField.stringValue, strategy: "friend")
-            }
-            else if strategy == "Most Retweets First" {
-                mainViewController?.addCampaign(name: campaignNameTextField.stringValue, strategy: "tweet")
-            }
-            else if strategy == "Most Followers First" {
-                mainViewController?.addCampaign(name: campaignNameTextField.stringValue, strategy: "follower")
+        okButton.isEnabled = false
+        cancelButton.isEnabled = false
+        progress.isHidden = false
+        progressLabel.isHidden = false
+        progress.startAnimation(self)
+        if let strategy = self.strategySelector.titleOfSelectedItem {
+            let campaignName = self.campaignNameTextField.stringValue
+            DispatchQueue.global().async {
+                if strategy == "Most Friends First" {
+                    self.mainViewController?.addCampaign(name: campaignName, strategy: "friend")
+                }
+                else if strategy == "Most Retweets First" {
+                    self.mainViewController?.addCampaign(name: campaignName, strategy: "tweet")
+                }
+                else if strategy == "Most Followers First" {
+                    self.mainViewController?.addCampaign(name: campaignName, strategy: "follower")
+                }
+                DispatchQueue.main.async {
+                    self.okButton.isEnabled = true
+                    self.cancelButton.isEnabled = true
+                    self.progress.isHidden = true
+                    self.progressLabel.isHidden = true
+                    self.progress.stopAnimation(self)
+                    self.mainViewController?.dismiss(self)
+                }
             }
         }
-        mainViewController?.dismiss(self)
     }
 
     

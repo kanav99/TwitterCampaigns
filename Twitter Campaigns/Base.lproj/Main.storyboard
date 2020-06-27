@@ -1210,12 +1210,27 @@ Gw
                                     <action selector="onCancelClicked:" target="f1X-5i-bfa" id="eW5-5G-acC"/>
                                 </connections>
                             </button>
+                            <progressIndicator hidden="YES" wantsLayer="YES" fixedFrame="YES" maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="fNS-T6-b9m">
+                                <rect key="frame" x="20" y="20" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qf9-Un-4lH">
+                                <rect key="frame" x="52" y="20" width="158" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Fetching Followers' List..." id="Z3U-fe-VqP">
+                                    <font key="font" metaFont="message"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="campaignNameTextField" destination="QtF-0k-Lzx" id="Gol-7y-mcc"/>
                         <outlet property="cancelButton" destination="0J2-cq-teZ" id="tuU-qF-7jf"/>
                         <outlet property="okButton" destination="Bdv-f7-TFh" id="Zbr-Nr-5SL"/>
+                        <outlet property="progress" destination="fNS-T6-b9m" id="qYo-qX-fuh"/>
+                        <outlet property="progressLabel" destination="qf9-Un-4lH" id="bMZ-2Z-0kH"/>
                         <outlet property="strategySelector" destination="jfK-Zb-PsU" id="55L-Ao-8Vf"/>
                     </connections>
                 </viewController>
