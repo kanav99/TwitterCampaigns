@@ -6,6 +6,12 @@ Download Here: https://github.com/kanav99/TwitterCampaigns/releases/download/1.0
 
 ## Features
 
+### Run multiple campaigns parallely at a time
+
+You can run multiple campaigns with multiple strategies and messages simultaneously.
+
+<img src="https://i.imgur.com/CaZAr9W.png" />
+
 ### Personalized messages for different users using placeholders 
 
 You can personalize the message for every user using placeholders
@@ -25,6 +31,10 @@ One might think that as this app runs locally, you would need to restart loop ev
 ### Pausing and Resetting Campaigns
 
 Heading is self explanatory
+
+### Get the list of followers sent and force send message to a user
+
+<img src="https://i.imgur.com/rWZRtXw.png" />
 
 ### Comes with a CLI
 
