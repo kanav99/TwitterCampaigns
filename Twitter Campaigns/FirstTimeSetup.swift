@@ -69,6 +69,7 @@ class FirstTimeSetupController: NSViewController {
                         user.accesskey = accessKey
                         user.accessSecret = accessSecret
                         user.name = authUser.name
+                        user.autoinc = 0
                         user.handle = authUser.screen_name
                         user.followers = authUser.followers_count
                         user.following = authUser.friends_count
