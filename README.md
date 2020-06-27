@@ -2,7 +2,7 @@
 
 Running Campaigns on Twitter made easy! That too locally on you macOS.
 
-Download Here: https://github.com/kanav99/TwitterCampaigns/releases/download/1.0/Twitter.Campaigns.zip
+Download Here: https://github.com/kanav99/TwitterCampaigns/releases/download/1.2/Twitter.Campaigns.zip
 
 ## Features
 
@@ -40,3 +40,4 @@ Heading is self explanatory
 
 Head over https://github.com/supra08/twitter-campaign-cli to get started with the CLI
 
+Icon credits: Freepik
