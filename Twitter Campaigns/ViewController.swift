@@ -409,7 +409,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         
         tableView.reloadData()
         
-        userImage.image = NSImage(named: "twitter")?.oval()
+        userImage.image = NSImage(named: "AppIcon")
     }
 
     // MARK: - Button Handlers

@@ -920,17 +920,6 @@
                                     <action selector="deleteCampaignClicked:" target="XfG-lQ-9wD" id="wMh-Wf-gdx"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4n3-YD-HJ5">
-                                <rect key="frame" x="480" y="35" width="74" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Login" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3dp-zM-s8Y">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="loginButtonClicked:" target="XfG-lQ-9wD" id="c6T-mI-vuL"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xdV-la-prM">
                                 <rect key="frame" x="707" y="3" width="83" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -945,7 +934,7 @@
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2GC-kq-L5A">
                                 <rect key="frame" x="423" y="103" width="188" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" selectable="YES" alignment="center" title="Twitter Campaigns      v1.0" id="lYv-rU-lGk">
+                                <textFieldCell key="cell" selectable="YES" alignment="center" title="Twitter Campaigns      v1.2" id="lYv-rU-lGk">
                                     <font key="font" size="16" name="HelveticaNeue"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1033,6 +1022,17 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="showFollowersClicked:" target="XfG-lQ-9wD" id="cPK-tw-5zf"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4n3-YD-HJ5">
+                                <rect key="frame" x="480" y="67" width="74" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Login" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3dp-zM-s8Y">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="loginButtonClicked:" target="XfG-lQ-9wD" id="c6T-mI-vuL"/>
                                 </connections>
                             </button>
                         </subviews>
