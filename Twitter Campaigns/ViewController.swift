@@ -211,23 +211,25 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     }
     
     func continueAll() {
-        let environment = [
-            "VIRTUAL_ENV": venvPath,
-            "ConsumerKey": user.consumerKey!,
-            "ConsumerSecret": user.consumerSecret!,
-            "AccessKey": user.accesskey!,
-            "AccessSecret": user.accessSecret!,
-            "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES",
-            "TCGUI": "YES"
-        ]
-            
-        if let main = Bundle.main.path(forResource: "twitter-campaign-cli/main.py", ofType: "") {
-            let continueProcess = Process()
-            continueProcess.launchPath = "/usr/bin/env"
-            continueProcess.environment = environment
-            continueProcess.arguments = [venvPath + "/bin/python", main, "continue" ]
-            continueProcess.launch()
-            continueProcess.waitUntilExit()
+        if let user = user {
+            let environment = [
+                "VIRTUAL_ENV": venvPath,
+                "ConsumerKey": user.consumerKey!,
+                "ConsumerSecret": user.consumerSecret!,
+                "AccessKey": user.accesskey!,
+                "AccessSecret": user.accessSecret!,
+                "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES",
+                "TCGUI": "YES"
+            ]
+                
+            if let main = Bundle.main.path(forResource: "twitter-campaign-cli/main.py", ofType: "") {
+                let continueProcess = Process()
+                continueProcess.launchPath = "/usr/bin/env"
+                continueProcess.environment = environment
+                continueProcess.arguments = [venvPath + "/bin/python", main, "continue" ]
+                continueProcess.launch()
+                continueProcess.waitUntilExit()
+            }
         }
     }
     
@@ -622,7 +624,9 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
                     self.campaigns[index].progress = 100.0 * Double(status.sent) / Double(status.total)
                     DispatchQueue.main.async {
                         self.tableView.reloadData(forRowIndexes: [index], columnIndexes: [0])
-                        self.statusResultLabel.stringValue = String(status.sent) + " / " + String(status.total)
+                        if index == self.tableView.selectedRow {
+                            self.statusResultLabel.stringValue = String(status.sent) + " / " + String(status.total)
+                        }
                         self.refreshingStatusLabel.isHidden = true
                         self.refreshingStatusLoader.isHidden = true
                         self.refreshingStatusLoader.stopAnimation(self)
