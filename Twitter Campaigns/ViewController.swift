@@ -82,6 +82,13 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         sheet.mainViewController = self
         return sheet
     }()
+    
+    lazy var warningSheet: WarningSheet = {
+        var sheet = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("WarningSheet"))
+        as! WarningSheet
+        sheet.mainViewController = self
+        return sheet
+    }()
 
     lazy var followerSheet: FollowerListViewController = {
         var sheet = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("followers"))
@@ -172,6 +179,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         super.viewDidLoad()
         confirmSheet.loadView()
         followerSheet.loadView()
+        warningSheet.loadView()
 
         // Do any additional setup after loading the view.
         tableView.dataSource = self
@@ -182,13 +190,11 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         loadCampaigns()
         
         if Bundle.main.bundlePath != "/Applications/Twitter Campaigns.app" {
-            confirmSheet.messageLabel.stringValue = "App not in Applications Folder. Startup won't work"
-            confirmSheet.noButton.isHidden = true
-            confirmSheet.callback = closeApp
             DispatchQueue.global().async {
                 sleep(2)
                 DispatchQueue.main.async {
-                    self.presentAsSheet(self.confirmSheet)
+                    self.warningSheet.label.stringValue = "App not in Applications Folder. Startup won't work"
+                    self.presentAsSheet(self.warningSheet)
                 }
             }
         }
@@ -203,9 +209,6 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
             }
         }
         continueAll()
-    }
-    
-    func closeApp() {
     }
 
     func confirmStartup() {
@@ -287,7 +290,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
             
             cell.progressIndicator.doubleValue = campaigns[row].progress
             print(campaigns[row].progress)
-            if campaigns[row].progress >= 0.99 {
+            if campaigns[row].progress >= 99.0 {
                 cell.progressIndicator.set(tintColor: NSColor.systemGreen)
             }
             cell.campaignNameLabel.stringValue = campaigns[row].name!
@@ -683,6 +686,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         followerSheet.loadingLabel.isHidden = false
         followerSheet.loadingProgress.isHidden = false
         followerSheet.loadingProgress.startAnimation(self)
+        followerSheet.forceSendButton.isEnabled = false
         followerSheet.tableView.tableColumns[2].headerCell.stringValue = "No. of " + campaigns[index].strategyString! + "s"
         followerSheet.empty = true
         followerSheet.tableView.reloadData()
@@ -713,6 +717,25 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
                 }
                 catch {
                     print("deserialization error")
+                }
+            }
+        }
+    }
+    
+    func sendDM(handle: String, callback: (() -> ())?) {
+        let index = tableView.selectedRow
+        let id = String(campaigns[index].id)
+        let environment = getPythonEnvironment()
+        if let main = Bundle.main.path(forResource: "twitter-campaign-cli/main.py", ofType: "") {
+            let dmProcess = Process()
+            dmProcess.launchPath = "/usr/bin/env"
+            dmProcess.environment = environment
+            dmProcess.arguments = [venvPath + "/bin/python", main, "dm", "--id", id, "-r", "[\"\(handle)\"]" ]
+            dmProcess.launch()
+            DispatchQueue.global().async {
+                dmProcess.waitUntilExit()
+                DispatchQueue.main.async {
+                    callback!()
                 }
             }
         }

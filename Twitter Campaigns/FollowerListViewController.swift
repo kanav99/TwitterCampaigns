@@ -11,7 +11,7 @@ import Cocoa
 struct Follower: Decodable {
     let name: String
     let handle: String
-    let sent: Bool
+    var sent: Bool
     let count: Int64
 }
 
@@ -23,7 +23,8 @@ class FollowerListViewController: NSViewController, NSTableViewDataSource, NSTab
     var empty = true
     
     @IBOutlet weak var tableView: NSTableView!
-
+    @IBOutlet weak var forceSendButton: NSButton!
+    
     @IBAction func onCloseClick(_ sender: Any) {
         mainViewController?.dismiss(self)
     }
@@ -60,5 +61,21 @@ class FollowerListViewController: NSViewController, NSTableViewDataSource, NSTab
             return cell
         }
         return nil
+    }
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        if tableView.selectedRow == -1 {
+            forceSendButton.isEnabled = false
+        } else {
+            forceSendButton.isEnabled = true
+        }
+    }
+    
+    @IBAction func onForceSendClick(_ sender: Any) {
+        let follower = followers[tableView.selectedRow]
+        mainViewController?.sendDM(handle: follower.handle) {
+            self.followers[self.tableView.selectedRow].sent = true
+            self.tableView.reloadData(forRowIndexes: [self.tableView.selectedRow], columnIndexes: [3])
+        }
     }
 }

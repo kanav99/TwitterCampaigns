@@ -1491,7 +1491,48 @@ Gw
                 <customObject id="JoL-ce-T5O" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="sVi-Jl-FVh"/>
             </objects>
-            <point key="canvasLocation" x="768" y="1372"/>
+            <point key="canvasLocation" x="768" y="1371.5"/>
+        </scene>
+        <!--Warning Sheet-->
+        <scene sceneID="rd4-pl-zeO">
+            <objects>
+                <viewController storyboardIdentifier="WarningSheet" id="N7F-M9-2bP" customClass="WarningSheet" customModule="Twitter_Campaigns" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="teq-yc-ipK">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="93"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lj3-0h-wua">
+                                <rect key="frame" x="18" y="42" width="414" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="AWo-8A-pfh">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dqP-aA-B9h">
+                                <rect key="frame" x="367" y="6" width="57" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Ok" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RiF-kN-TIr">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onClick:" target="N7F-M9-2bP" id="CTc-Uy-0xX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="label" destination="Lj3-0h-wua" id="ZJi-of-aV4"/>
+                    </connections>
+                </viewController>
+                <customObject id="V13-sV-QKC" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="768" y="1576.5"/>
         </scene>
         <!--Follower List View Controller-->
         <scene sceneID="Bor-dX-4Dv">
@@ -1502,14 +1543,14 @@ Gw
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZD-hU-c72">
-                                <rect key="frame" x="0.0" y="34" width="580" height="320"/>
+                                <rect key="frame" x="0.0" y="34" width="451" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" id="4we-Hn-8GB">
-                                    <rect key="frame" x="1" y="0.0" width="578" height="319"/>
+                                    <rect key="frame" x="1" y="0.0" width="449" height="319"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="iJ7-Dq-wh5" viewBased="YES" id="3dX-Mk-Oqk">
-                                            <rect key="frame" x="0.0" y="0.0" width="578" height="294"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="449" height="294"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1611,7 +1652,7 @@ Gw
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn width="156" minWidth="10" maxWidth="3.4028234663852886e+38" id="vAU-vs-2HX">
+                                                <tableColumn width="27" minWidth="10" maxWidth="3.4028234663852886e+38" id="vAU-vs-2HX">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="💬">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1624,11 +1665,11 @@ Gw
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="c4" id="kXk-Ww-7Qb">
-                                                            <rect key="frame" x="420" y="1" width="156" height="17"/>
+                                                            <rect key="frame" x="420" y="1" width="27" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1qE-i3-YiH">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="156" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="27" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="qTf-xX-nRr">
                                                                         <font key="font" metaFont="system"/>
@@ -1660,7 +1701,7 @@ Gw
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="iJ7-Dq-wh5">
-                                    <rect key="frame" x="0.0" y="0.0" width="578" height="25"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="449" height="25"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
@@ -1691,9 +1732,21 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9BA-ZS-649">
+                                <rect key="frame" x="196" y="0.0" width="59" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="✉️" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sBy-AL-Kt7">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="13" name=".AppleColorEmojiUI"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onForceSendClick:" target="dh5-Uy-A3f" id="7z9-ER-jox"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="forceSendButton" destination="9BA-ZS-649" id="tCY-1k-DjP"/>
                         <outlet property="loadingLabel" destination="sXP-zj-MRu" id="TgC-VH-h3o"/>
                         <outlet property="loadingProgress" destination="LXg-2c-gju" id="BDV-vN-ysl"/>
                         <outlet property="tableView" destination="3dX-Mk-Oqk" id="SNX-kH-0C7"/>
