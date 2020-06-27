@@ -42,7 +42,7 @@ class FollowerListViewController: NSViewController, NSTableViewDataSource, NSTab
         }
         else if tableColumn == tableView.tableColumns[1] {
             iden = "c2"
-            val = followers[row].name + "(@\(followers[row].handle))"
+            val = followers[row].name + " (@\(followers[row].handle))"
         }
         else if tableColumn == tableView.tableColumns[2] {
             iden = "c3"

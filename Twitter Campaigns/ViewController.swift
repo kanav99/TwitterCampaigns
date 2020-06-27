@@ -286,6 +286,10 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "campaignCell"), owner: self) as? CampaignListItemCell {
             
             cell.progressIndicator.doubleValue = campaigns[row].progress
+            print(campaigns[row].progress)
+            if campaigns[row].progress >= 0.99 {
+                cell.progressIndicator.set(tintColor: NSColor.systemGreen)
+            }
             cell.campaignNameLabel.stringValue = campaigns[row].name!
             return cell
         }
@@ -582,6 +586,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
 
     @IBAction func refreshClicked(_ sender: Any) {
         refreshingStatusLabel.stringValue = "Refreshing status..."
+        statusResultLabel.stringValue = "Refreshing..."
         refreshingStatusLabel.isHidden = false
         refreshingStatusLoader.isHidden = false
         refreshingStatusLoader.startAnimation(self)
@@ -615,6 +620,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
                     print(status.started)
                     self.campaigns[index].progress = 100.0 * Double(status.sent) / Double(status.total)
                     DispatchQueue.main.async {
+                        (NSApplication.shared.delegate as? AppDelegate)?.saveAction(nil)
                         self.tableView.reloadData(forRowIndexes: [index], columnIndexes: [0])
                         if index == self.tableView.selectedRow {
                             self.statusResultLabel.stringValue = String(status.sent) + " / " + String(status.total)
