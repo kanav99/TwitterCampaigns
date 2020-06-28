@@ -29,3 +29,11 @@ Download Here: https://github.com/kanav99/TwitterCampaigns/releases/download/1.2
 6. Easy pausing and continuing of campaigns
 7. Comes with a CLI
 8. Data never leaves your machine, login using Twitter API keys
+
+## Authors
+
+Supratik Das (@supra08)
+Palak Goenka (@palakg11)
+Kanav Gupta (@kanav99)
+
+Created with :heart: by [SDSLabs](https://sdslabs.co)
