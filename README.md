@@ -1,11 +1,16 @@
 # Twitter Campaigns
 
-Running your Campaigns on Twitter made easy! That too locally on you macOS.
-<img align="left" width="100px"  src="https://i.imgur.com/jIRiGnE.png">
+<div style="display: table-cell;vertical-align: middle;">
+<img height="50px" src="https://i.imgur.com/jIRiGnE.png">
+</div>
 
-Download Here: https://github.com/kanav99/TwitterCampaigns/releases/download/1.2/Twitter.Campaigns.zip
-  
-&nbsp;
+<br />
+<p align="center">
+  <img src="https://i.imgur.com/G4YUrdG.gif" style="display: block;margin: auto;"><br />
+  Running your Campaigns on Twitter made easy! That too locally on you macOS.
+  <a href="https://github.com/kanav99/TwitterCampaigns/releases/download/1.2/Twitter.Campaigns.zip"> Download Here </a>
+</p>
+
 ## Installation
 
 1. This package needs MongoDB installed on your mac. Install it using brew
@@ -32,7 +37,7 @@ Download Here: https://github.com/kanav99/TwitterCampaigns/releases/download/1.2
 
 ## Authors
 
-* Supratik Das ([@supra08](https://supra08))  
+* Supratik Das ([@supra08](https://github.com/supra08))  
 * Palak Goenka ([@palakg11](https://github.com/palakg11))  
 * Kanav Gupta ([@kanav99](https://github.com/kanav99))
 
