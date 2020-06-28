@@ -37,3 +37,5 @@ Download Here: https://github.com/kanav99/TwitterCampaigns/releases/download/1.2
 * Kanav Gupta ([@kanav99](https://github.com/kanav99))
 
 Created with :heart: by [SDSLabs](https://sdslabs.co)
+
+Icon Credits: Freepik
