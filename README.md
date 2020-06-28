@@ -1,14 +1,9 @@
-# Twitter Campaigns
 
-<div style="display: table-cell;vertical-align: middle;">
-<img height="50px" src="https://i.imgur.com/jIRiGnE.png">
-</div>
-
-<br />
 <p align="center">
+  <img src="https://i.imgur.com/fS66PY2.png" height="200px">
   <img src="https://i.imgur.com/G4YUrdG.gif" style="display: block;margin: auto;"><br />
-  Running your Campaigns on Twitter made easy! That too locally on you macOS.
-  <a href="https://github.com/kanav99/TwitterCampaigns/releases/download/1.2/Twitter.Campaigns.zip"> Download Here </a>
+  Running your Campaigns on Twitter made easy! That too locally on you macOS.<br />
+  <a href="https://github.com/kanav99/TwitterCampaigns/releases/download/1.2/Twitter.Campaigns.zip"> Download Now! </a>
 </p>
 
 ## Installation
