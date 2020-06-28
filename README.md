@@ -27,7 +27,7 @@
 4. Campaigns continue at the same point on restart
 5. Test your campaign on a few users before running it on it's full capacity
 6. Easy pausing and continuing of campaigns
-7. Comes with a CLI
+7. Comes with a CLI (Find it here - https://github.com/supra08/twitter-campaign-cli)
 8. Data never leaves your machine, login using Twitter API keys
 
 ## Authors
